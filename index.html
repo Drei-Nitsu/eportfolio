@@ -1196,8 +1196,8 @@
     function generateAIResponse(userInput) {
       const q = userInput.toLowerCase();
 
-      // ── 1. Top HR Question: Why Should We Hire You? ──
-      if (q.includes('why should we hire') || q.includes('why hire') || q.includes('why choose you') || q.includes('why should i hire') || q.includes('why accept you') || q.includes('bakit ikaw') || q.includes('bakit ka namin') || q.includes('bakit ka dapat')) {
+      // ── 1. Top HR Question: Why Should We Hire You / Value Proposition ──
+      if (q.includes('why should we hire') || q.includes('why hire') || q.includes('why choose you') || q.includes('why should i hire') || q.includes('why accept you') || q.includes('bakit ikaw') || q.includes('bakit ka namin') || q.includes('bakit ka dapat') || q.includes('value can you bring') || q.includes('bring to our team') || q.includes('what value') || q.includes('why you')) {
         return `
           <p>🌟 <strong>Why You Should Hire Andrei for QA:</strong></p>
           <div class="space-y-1.5 text-slate-300">
@@ -1219,8 +1219,8 @@
         `;
       }
 
-      // ── 2. Why QA instead of Developer / Motivation ──
-      if (q.includes('why qa') || q.includes('choose qa') || q.includes('instead of being a developer') || q.includes('instead of developer') || q.includes('why not developer') || q.includes('why not dev') || q.includes('why testing') || q.includes('bakit qa') || q.includes('bakit testing') || q.includes('bakit ka nag qa') || q.includes('why quality')) {
+      // ── 2. Why QA instead of Developer / Passion for Testing ──
+      if (q.includes('why qa') || q.includes('choose qa') || q.includes('instead of being a developer') || q.includes('instead of developer') || q.includes('why not developer') || q.includes('why not dev') || q.includes('why testing') || q.includes('passion in testing') || q.includes('passion for testing') || q.includes('passion') || q.includes('bakit qa') || q.includes('bakit testing') || q.includes('bakit ka nag qa') || q.includes('why quality')) {
         return `
           <p>💡 <strong>Why QA Instead of Full-Time Development?</strong></p>
           <div class="space-y-1.5 text-slate-300">
@@ -1234,8 +1234,8 @@
         `;
       }
 
-      // ── 3. Strengths and Weaknesses ──
-      if (q.includes('weakness') || q.includes('weaknesses') || q.includes('kahinaan') || q.includes('strengths and weaknesses') || q.includes('strength and weakness') || q.includes('greatest strength') || (q.includes('strength') && !q.includes('tech stack'))) {
+      // ── 3A. Strengths AND Weaknesses (Both Asked) ──
+      if ((q.includes('strength') && q.includes('weakness')) || (q.includes('kalakasan') && q.includes('kahinaan'))) {
         return `
           <p>⭐ <strong>Strengths &amp; Growth Areas:</strong></p>
           <div class="space-y-2 text-slate-300">
@@ -1252,6 +1252,44 @@
               <p class="pt-0.5 text-slate-300">He is transparent that he is transitioning from purely manual testing into automated testing (Playwright & Postman). He compensates by practicing daily and seeking mentorship!</p>
             </div>
           </div>
+        `;
+      }
+
+      // ── 3B. Weakness / Growth Area ONLY ──
+      if (q.includes('weakness') || q.includes('weaknesses') || q.includes('kahinaan') || q.includes('handle your weakness')) {
+        return `
+          <p>🌱 <strong>Growth Area &amp; How Andrei Handles Weaknesses:</strong></p>
+          <div class="space-y-1.5 text-slate-300">
+            <p>Andrei is honest and self-aware about his technical journey:</p>
+            <ul class="list-disc list-inside space-y-1">
+              <li><strong>Current Growth Area:</strong> Transitioning from purely manual testing into automated script writing (Playwright &amp; Postman).</li>
+              <li><strong>How He Handles It:</strong> Instead of hiding it, he practices locator strategies and API collections daily, masters solid manual foundations first, and actively asks for code reviews and guidance from senior QA engineers.</li>
+            </ul>
+          </div>
+        `;
+      }
+
+      // ── 3C. Strength ONLY ──
+      if (q.includes('greatest strength') || q.includes('your strength') || q.includes('strengths') || q.includes('kalakasan')) {
+        return `
+          <p>💪 <strong>Andrei's Greatest Strengths:</strong></p>
+          <ul class="list-disc list-inside space-y-1 text-slate-300">
+            <li><strong>Attention to Detail:</strong> Mabusisi mag-test — validates boundary inputs, negative arithmetic, invalid data formats, and edge cases that developers often miss.</li>
+            <li><strong>Systems Development Perspective:</strong> Because he writes code (Node.js, Flutter, Python, SQL), he understands why defects occur under the hood.</li>
+            <li><strong>Respectful, Objective Communication:</strong> Reports bugs with clear step-by-step reproduction steps, logs, and screenshots without finger-pointing.</li>
+          </ul>
+        `;
+      }
+
+      // ── 3D. Work Ethic ──
+      if (q.includes('work ethic') || q.includes('ethic') || q.includes('paano ka magtrabaho')) {
+        return `
+          <p>🌟 <strong>Andrei's Work Ethic &amp; Attitude:</strong></p>
+          <ul class="list-disc list-inside space-y-1 text-slate-300">
+            <li><strong>Accountability &amp; Ownership:</strong> He treats his 486-hour OJT as a genuine professional responsibility, taking pride in ensuring zero critical bugs escape into releases.</li>
+            <li><strong>Patience &amp; Thoroughness:</strong> Systematic in executing test suites and verifying edge cases rather than rushing through test scenarios.</li>
+            <li><strong>Open to Feedback:</strong> Highly receptive to constructive critique and eager to absorb industry best practices from team mentors.</li>
+          </ul>
         `;
       }
 
