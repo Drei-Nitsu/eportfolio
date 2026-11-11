@@ -797,8 +797,8 @@
   </section>
 
   <!-- ── Dynamic Real-Time Status & Location Footer ──── -->
-  <footer class="border-t border-slate-800/80 bg-[#050811]/95 backdrop-blur-md py-8 px-4 sm:px-6 lg:px-8 text-xs code-font text-slate-400">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-5 text-center md:text-left">
+  <footer class="border-t border-slate-800/80 bg-[#050811]/95 backdrop-blur-md pt-8 pb-28 sm:pb-10 px-4 sm:px-6 lg:px-8 text-xs code-font text-slate-400">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-5 text-center md:text-left md:pr-52">
       <!-- Left: Identity -->
       <div class="flex items-center gap-3">
         <div class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold text-xs shrink-0">
@@ -811,14 +811,14 @@
 
       <!-- Right: Live Device Location & Real-Time Clock -->
       <div class="flex flex-wrap items-center justify-center md:justify-end gap-2.5">
-        <!-- Device Location Pill -->
-        <div class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900/90 border border-slate-800 text-slate-300 shadow-sm">
+        <!-- Device Location Pill (Clickable for GPS precision) -->
+        <button onclick="requestExactLocation()" title="Click to detect exact GPS location" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-800 hover:border-cyan-500/50 text-slate-300 shadow-sm transition-all cursor-pointer">
           <i data-lucide="map-pin" class="w-3.5 h-3.5 text-cyan-400"></i>
           <span class="text-[11px]">
             <span class="text-slate-500 mr-1">Device Location:</span>
             <strong id="footerDeviceLocation" class="text-cyan-300 font-mono">Detecting...</strong>
           </span>
-        </div>
+        </button>
 
         <!-- Live Clock Pill -->
         <div class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900/90 border border-emerald-500/30 text-slate-300 shadow-sm">
@@ -971,38 +971,104 @@
 
       // 2. Real-time Device Location Detection
       const locElem = document.getElementById('footerDeviceLocation');
-      if (locElem) {
-        // Fast instant fallback from browser timezone
-        try {
-          const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-          if (tz) {
-            locElem.textContent = tz.replace(/_/g, ' ');
-          } else {
+      if (!locElem) return;
+
+      // Instant cache display if previously detected
+      const cached = localStorage.getItem('user_detected_location');
+      if (cached) {
+        locElem.textContent = cached;
+      }
+
+      // Request exact GPS / device location
+      requestExactLocation();
+    }
+
+    // Exact GPS / High-Accuracy Device Geolocation with Reverse Geocoding
+    async function requestExactLocation() {
+      const locElem = document.getElementById('footerDeviceLocation');
+      if (!locElem) return;
+
+      if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(
+          async (pos) => {
+            const { latitude, longitude } = pos.coords;
+            try {
+              // 1. BigDataCloud high-accuracy reverse geocoder (free, no API key, CORS open)
+              const res = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`);
+              if (res.ok) {
+                const data = await res.json();
+                const city = data.locality || data.city || '';
+                const province = data.principalSubdivision || '';
+                const country = data.countryName || 'Philippines';
+
+                let formatted = '';
+                if (city && province && city.toLowerCase() !== province.toLowerCase()) {
+                  formatted = `${city}, ${province}`;
+                } else if (city) {
+                  formatted = `${city}, ${country}`;
+                } else if (province) {
+                  formatted = `${province}, ${country}`;
+                } else {
+                  formatted = country;
+                }
+
+                locElem.textContent = formatted;
+                localStorage.setItem('user_detected_location', formatted);
+                return;
+              }
+            } catch (err) {
+              console.warn('BigDataCloud error, trying Nominatim fallback...', err);
+            }
+
+            // 2. OpenStreetMap Nominatim reverse geocode fallback
+            try {
+              const resNom = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`);
+              if (resNom.ok) {
+                const nomData = await resNom.json();
+                const addr = nomData.address || {};
+                const town = addr.municipality || addr.city || addr.town || addr.village || addr.suburb || '';
+                const state = addr.state || addr.region || '';
+                const formatted = (town && state) ? `${town}, ${state}` : (town || state || 'Philippines');
+                locElem.textContent = formatted;
+                localStorage.setItem('user_detected_location', formatted);
+                return;
+              }
+            } catch (nomErr) {
+              console.warn('Nominatim reverse error', nomErr);
+            }
+          },
+          (err) => {
+            // If GPS permission was not yet granted or denied, use IP network fallback
+            if (!localStorage.getItem('user_detected_location')) {
+              fallbackIPLocation();
+            }
+          },
+          { enableHighAccuracy: true, timeout: 8000, maximumAge: 30000 }
+        );
+      } else {
+        fallbackIPLocation();
+      }
+    }
+
+    function fallbackIPLocation() {
+      const locElem = document.getElementById('footerDeviceLocation');
+      if (!locElem) return;
+
+      fetch('https://ipapi.co/json/')
+        .then(res => res.json())
+        .then(data => {
+          if (data.city && data.country_name) {
+            locElem.textContent = `${data.city}, ${data.country_name}`;
+          }
+        })
+        .catch(() => {
+          try {
+            const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            locElem.textContent = tz ? tz.replace(/_/g, ' ') : 'Philippines';
+          } catch (e) {
             locElem.textContent = 'Philippines';
           }
-        } catch (e) {
-          locElem.textContent = 'Philippines';
-        }
-
-        // Precise location via fast non-intrusive IP lookup
-        fetch('https://ipapi.co/json/')
-          .then(res => res.json())
-          .then(data => {
-            if (data.city && data.country_name) {
-              locElem.textContent = `${data.city}, ${data.country_name}`;
-            }
-          })
-          .catch(() => {
-            fetch('https://freeipapi.com/api/json')
-              .then(res => res.json())
-              .then(d2 => {
-                if (d2.cityName && d2.countryName) {
-                  locElem.textContent = `${d2.cityName}, ${d2.countryName}`;
-                }
-              })
-              .catch(() => {});
-          });
-      }
+        });
     }
 
     // Mobile Navigation Toggle

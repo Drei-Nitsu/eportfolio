@@ -143,6 +143,87 @@ export default function QAEngineerView() {
   const [currentTime, setCurrentTime] = useState<string>('');
   const [deviceLocation, setDeviceLocation] = useState<string>('Detecting...');
 
+  const requestExactLocation = () => {
+    if (typeof window !== 'undefined' && 'geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        async (pos) => {
+          const { latitude, longitude } = pos.coords;
+          try {
+            // 1. BigDataCloud reverse geocode (accurate to municipality/town)
+            const res = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`);
+            if (res.ok) {
+              const data = await res.json();
+              const city = data.locality || data.city || '';
+              const province = data.principalSubdivision || '';
+              const country = data.countryName || 'Philippines';
+
+              let formatted = '';
+              if (city && province && city.toLowerCase() !== province.toLowerCase()) {
+                formatted = `${city}, ${province}`;
+              } else if (city) {
+                formatted = `${city}, ${country}`;
+              } else if (province) {
+                formatted = `${province}, ${country}`;
+              } else {
+                formatted = country;
+              }
+
+              setDeviceLocation(formatted);
+              localStorage.setItem('user_detected_location', formatted);
+              return;
+            }
+          } catch (err) {
+            console.warn('BigDataCloud error, trying Nominatim...', err);
+          }
+
+          // 2. OpenStreetMap Nominatim fallback
+          try {
+            const resNom = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`);
+            if (resNom.ok) {
+              const nomData = await resNom.json();
+              const addr = nomData.address || {};
+              const town = addr.municipality || addr.city || addr.town || addr.village || addr.suburb || '';
+              const state = addr.state || addr.region || '';
+              const formatted = (town && state) ? `${town}, ${state}` : (town || state || 'Philippines');
+              setDeviceLocation(formatted);
+              localStorage.setItem('user_detected_location', formatted);
+              return;
+            }
+          } catch (nomErr) {
+            console.warn('Nominatim reverse error', nomErr);
+          }
+        },
+        () => {
+          // If declined or error, fallback to IP network if no cache
+          if (!localStorage.getItem('user_detected_location')) {
+            fetchIPLocation();
+          }
+        },
+        { enableHighAccuracy: true, timeout: 8000, maximumAge: 30000 }
+      );
+    } else {
+      fetchIPLocation();
+    }
+  };
+
+  const fetchIPLocation = () => {
+    fetch('https://ipapi.co/json/')
+      .then(res => res.json())
+      .then(data => {
+        if (data.city && data.country_name) {
+          setDeviceLocation(`${data.city}, ${data.country_name}`);
+        }
+      })
+      .catch(() => {
+        try {
+          const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+          setDeviceLocation(tz ? tz.replace(/_/g, ' ') : 'Philippines');
+        } catch {
+          setDeviceLocation('Philippines');
+        }
+      });
+  };
+
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
@@ -156,32 +237,14 @@ export default function QAEngineerView() {
     updateTime();
     const interval = setInterval(updateTime, 1000);
 
-    // Initial timezone fallback
-    try {
-      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      if (tz) setDeviceLocation(tz.replace(/_/g, ' '));
-    } catch {
-      setDeviceLocation('Philippines');
+    // Check cached location first
+    const cached = localStorage.getItem('user_detected_location');
+    if (cached) {
+      setDeviceLocation(cached);
     }
 
-    // IP lookup for city and country
-    fetch('https://ipapi.co/json/')
-      .then(res => res.json())
-      .then(data => {
-        if (data.city && data.country_name) {
-          setDeviceLocation(`${data.city}, ${data.country_name}`);
-        }
-      })
-      .catch(() => {
-        fetch('https://freeipapi.com/api/json')
-          .then(res => res.json())
-          .then(d2 => {
-            if (d2.cityName && d2.countryName) {
-              setDeviceLocation(`${d2.cityName}, ${d2.countryName}`);
-            }
-          })
-          .catch(() => {});
-      });
+    // Trigger high-accuracy device location
+    requestExactLocation();
 
     return () => clearInterval(interval);
   }, []);
@@ -646,8 +709,8 @@ export default function QAEngineerView() {
       </main>
 
       {/* Dynamic Real-Time Status & Location Footer */}
-      <footer className="border-t border-slate-800/80 bg-slate-950/90 backdrop-blur-md py-8 px-4 sm:px-6 lg:px-8 text-xs font-mono text-slate-400">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-5 text-center md:text-left">
+      <footer className="border-t border-slate-800/80 bg-slate-950/90 backdrop-blur-md pt-8 pb-28 sm:pb-10 px-4 sm:px-6 lg:px-8 text-xs font-mono text-slate-400">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-5 text-center md:text-left md:pr-52">
           {/* Left: Identity */}
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold text-xs shrink-0">
@@ -661,13 +724,17 @@ export default function QAEngineerView() {
           {/* Right: Live Device Location & Real-Time Clock */}
           <div className="flex flex-wrap items-center justify-center md:justify-end gap-2.5">
             {/* Device Location Pill */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900/90 border border-slate-800 text-slate-300 shadow-sm">
+            <button
+              onClick={requestExactLocation}
+              title="Click to detect exact GPS location"
+              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-800 hover:border-cyan-500/50 text-slate-300 shadow-sm transition-all cursor-pointer"
+            >
               <MapPin className="w-3.5 h-3.5 text-cyan-400" />
               <span className="text-[11px]">
                 <span className="text-slate-500 mr-1">Device Location:</span>
                 <strong className="text-cyan-300 font-mono">{deviceLocation}</strong>
               </span>
-            </div>
+            </button>
 
             {/* Live Clock Pill */}
             <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900/90 border border-emerald-500/30 text-slate-300 shadow-sm">
