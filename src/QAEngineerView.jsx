@@ -595,32 +595,6 @@ export default function QAEngineerView() {
 
         </section>
 
-        {/* =================================================================== */}
-        {/* 8. FOOTER */}
-        {/* =================================================================== */}
-        <footer id="contact" className="scroll-mt-24 pt-6 border-t border-slate-800/80 text-xs font-mono text-slate-500">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
-            <div>
-              &copy; {new Date().getFullYear()} John Andrei Garcia Agustin &bull; De La Salle Lipa (4th Year BSIT &bull; 486 Hours OJT)
-            </div>
-            <div className="flex items-center gap-4 text-slate-400">
-              <a href="https://github.com/Drei-Nitsu" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors flex items-center gap-1.5">
-                <img src="/github-icon.png" alt="GitHub" className="w-3.5 h-3.5 rounded-full object-contain" />
-                <span>GitHub</span>
-              </a>
-              <span>&bull;</span>
-              <a href="https://linkedin.com/in/john-andrei-agustin-143b79386" target="_blank" rel="noopener noreferrer" className="hover:text-cyan-400 transition-colors flex items-center gap-1.5">
-                <img src="/linkedin-icon.png" alt="LinkedIn" className="w-3.5 h-3.5 rounded-sm object-contain" />
-                <span>LinkedIn</span>
-              </a>
-              <span>&bull;</span>
-              <a href="/John-Andrei-Agustin-CV.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-                CV (PDF)
-              </a>
-            </div>
-          </div>
-        </footer>
-
       </main>
 
       {/* Resume Preview Modal */}
