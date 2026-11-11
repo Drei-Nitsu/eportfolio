@@ -1365,19 +1365,98 @@
         `;
       }
 
-      // Location / Relocation / Remote vs Onsite
-      if (q.includes('location') || q.includes('where') || q.includes('remote') || q.includes('onsite') || q.includes('hybrid') || q.includes('manila') || q.includes('batangas') || q.includes('lipa')) {
+      // Who is Andrei / Tell me about yourself / Sino si Andrei / Introduction
+      if (q.includes('who is') || q.includes('sino si') || q.includes('tell me about yourself') || q.includes('introduce') || q.includes('about andrei') || q.includes('background') || q.includes('who are you') || q.includes('profile')) {
         return `
-          <p>📍 <strong>Location & Work Setup:</strong></p>
-          <p class="text-slate-300">Andrei is based in <strong>Batangas / Lipa City</strong>. He has a dedicated workstation for <strong>100% Remote</strong> setups, and is also open to <strong>Hybrid or Onsite</strong> arrangements within Batangas and Metro Manila / NCR.</p>
+          <p>👋 <strong>Meet John Andrei Garcia Agustin:</strong></p>
+          <p class="text-slate-300">Andrei is a dedicated <strong>4th-Year BSIT student (Specialization in Systems Development) at De La Salle Lipa (Class of 2027)</strong>, based in <strong>Talisay, Batangas</strong>.</p>
+          <ul class="list-disc list-inside text-slate-300 space-y-1 pt-1">
+            <li>🎯 <strong>Target Role:</strong> QA Engineering Intern / OJT (486 Practicum Hours).</li>
+            <li>🔍 <strong>Mindset:</strong> Combines systems development foundations with a sharp eye for edge cases, bug isolation, and user experience.</li>
+            <li>🌱 <strong>Work Ethic:</strong> Mabusisi sa detalye (meticulous), open to feedback, and committed to continuous technical improvement.</li>
+          </ul>
         `;
       }
 
-      // Hobbies / Personal interests
-      if (q.includes('hobby') || q.includes('hobbies') || q.includes('interest') || q.includes('outside') || q.includes('free time')) {
+      // Why QA / Motivation / Bakit QA
+      if (q.includes('why qa') || q.includes('bakit qa') || q.includes('why testing') || q.includes('passion') || q.includes('why quality') || q.includes('bakit testing') || q.includes('why not dev') || q.includes('bakit ka nag qa')) {
         return `
-          <p>🎮 <strong>Outside of QA Testing:</strong></p>
-          <p class="text-slate-300">When not designing test cases or running Playwright scripts, Andrei enjoys exploring modern web and mobile tech, identifying usability flaws in everyday apps, studying tech roadmaps, and continuous self-improvement!</p>
+          <p>💡 <strong>Why Quality Assurance (QA)?</strong></p>
+          <p class="text-slate-300">While Andrei studies Systems Development and writes code, his real passion ignited when testing academic systems:</p>
+          <ul class="list-disc list-inside text-slate-300 space-y-1 pt-1">
+            <li>🛡️ <strong>Breaking it before users do:</strong> He finds genuine satisfaction in uncovering edge cases, input glitches, and workflow flaws before software hits production.</li>
+            <li>🤝 <strong>Empathy for Developers:</strong> Because he has built apps with Node.js, Flutter, and React, he understands how developers think — making his bug reports clearer and easier to fix.</li>
+            <li>✨ <strong>Quality Standards:</strong> He believes high-quality software builds user trust and saves businesses time and money.</li>
+          </ul>
+        `;
+      }
+
+      // Strengths & Weaknesses / Personality at work
+      if (q.includes('strength') || q.includes('weakness') || q.includes('kalakasan') || q.includes('kahinaan') || q.includes('greatest strength') || q.includes('work ethic')) {
+        return `
+          <p>⭐ <strong>Strengths &amp; Growth Areas:</strong></p>
+          <div class="space-y-1.5 text-slate-300">
+            <div>
+              <strong class="text-emerald-400">💪 Core Strengths:</strong>
+              <ul class="list-disc list-inside space-y-0.5 pt-0.5">
+                <li><strong>Attention to Detail:</strong> Mabusisi mag-test — checks input boundaries, negative numbers, and unexpected user clicks.</li>
+                <li><strong>Fast Learner:</strong> Rapidly picks up documentation, test tooling, and internal company workflows.</li>
+                <li><strong>Respectful Team Communication:</strong> Communicates defects objectively with clear reproduction steps without assigning blame.</li>
+              </ul>
+            </div>
+            <div>
+              <strong class="text-cyan-400">🌱 Growth Area / Weakness:</strong>
+              <p class="pt-0.5 text-slate-300">He is transparent that he is transitioning from purely manual testing into automated testing (Playwright & Postman). He compensates by practicing daily and seeking mentorship!</p>
+            </div>
+          </div>
+        `;
+      }
+
+      // Handling Pressure / Disagreement / Conflict Resolution
+      if (q.includes('pressure') || q.includes('deadline') || q.includes('conflict') || q.includes('disagree') || q.includes('developer says') || q.includes('stress') || q.includes('tight')) {
+        return `
+          <p>🤝 <strong>Handling Pressure &amp; Team Collaboration:</strong></p>
+          <ul class="list-disc list-inside text-slate-300 space-y-1">
+            <li><strong>When developers contest a bug:</strong> Andrei stays objective. He provides video recordings, Chrome DevTools console logs, and step-by-step reproduction steps so the bug is indisputable.</li>
+            <li><strong>Under tight sprint deadlines:</strong> He prioritizes testing by severity — focusing on critical user journeys (P0/P1: authentication, forms, data integrity) before minor cosmetic issues.</li>
+            <li><strong>Mindset:</strong> QA and Developers are on the same team — the shared goal is shipping a reliable product!</li>
+          </ul>
+        `;
+      }
+
+      // Career Goals / 3-5 Years / Future Plans
+      if (q.includes('goal') || q.includes('career') || q.includes('future') || q.includes('3 year') || q.includes('5 year') || q.includes('where do you see')) {
+        return `
+          <p>🎯 <strong>Career Vision (3 to 5 Years):</strong></p>
+          <ul class="list-disc list-inside text-slate-300 space-y-1">
+            <li><strong>Near Term (1–2 Years):</strong> Complete a stellar 486-hour QA Internship &rarr; Transition into a Junior QA Engineer with deep mastery of manual exploratory testing and Postman API automation.</li>
+            <li><strong>Long Term (3–5 Years):</strong> Grow into a full-fledged Software Development Engineer in Test (SDET) or QA Lead, designing end-to-end Playwright pipelines integrated into CI/CD workflows.</li>
+          </ul>
+        `;
+      }
+
+      // Hobbies / Personal interests / Free time / Outside of tech
+      if (q.includes('hobby') || q.includes('hobbies') || q.includes('interest') || q.includes('outside') || q.includes('free time') || q.includes('games') || q.includes('gaming') || q.includes('personality')) {
+        return `
+          <p>🎮 <strong>Outside of QA Testing (Personality &amp; Hobbies):</strong></p>
+          <ul class="list-disc list-inside text-slate-300 space-y-1">
+            <li>🔍 <strong>App Explorer:</strong> Loves downloading everyday apps and mentally noting UI/UX friction and responsiveness flaws.</li>
+            <li>🕹️ <strong>Gaming &amp; Strategy:</strong> Enjoys casual and strategy gaming — which fuels his puzzle-solving mindset and patience when tracking tricky bugs.</li>
+            <li>🗺️ <strong>Tech Roadmaps:</strong> Regularly follows industry roadmaps (JPCS DevRoutes member) to explore what's new in tech.</li>
+            <li>☕ <strong>Life in Batangas:</strong> Enjoys coffee breaks, spending quality time with family and friends in Talisay, and continuous personal growth.</li>
+          </ul>
+        `;
+      }
+
+      // Location / Relocation / Remote vs Onsite / Setup
+      if (q.includes('location') || q.includes('where') || q.includes('remote') || q.includes('onsite') || q.includes('hybrid') || q.includes('manila') || q.includes('batangas') || q.includes('lipa') || q.includes('talisay') || q.includes('setup')) {
+        return `
+          <p>📍 <strong>Location &amp; Work Setup:</strong></p>
+          <ul class="space-y-1 text-slate-300">
+            <li>🏡 <strong>Home Base:</strong> Talisay, Batangas (studying at De La Salle Lipa).</li>
+            <li>💻 <strong>Remote Setup:</strong> Dedicated PC workstation with high-speed fiber internet and power backup readiness.</li>
+            <li>🚗 <strong>Hybrid / Onsite Readiness:</strong> Willing to report onsite or hybrid within Batangas (Lipa City, Tanauan, Sto. Tomas) and accessible areas in Metro Manila / NCR (Alabang, Taguig, Makati).</li>
+          </ul>
         `;
       }
 
