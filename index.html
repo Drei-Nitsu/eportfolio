@@ -809,18 +809,18 @@
         </div>
       </div>
 
-      <!-- Right: Live Device Location & Real-Time Clock -->
+      <!-- Right: Andrei's Verified Location & Live Philippine Time -->
       <div class="flex flex-wrap items-center justify-center md:justify-end gap-2.5">
-        <!-- Device Location Pill (Clickable for GPS precision) -->
-        <button onclick="requestExactLocation()" title="Click to detect exact GPS location" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-800 hover:border-cyan-500/50 text-slate-300 shadow-sm transition-all cursor-pointer">
+        <!-- Location Pill -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900/90 border border-slate-800 text-slate-300 shadow-sm">
           <i data-lucide="map-pin" class="w-3.5 h-3.5 text-cyan-400"></i>
           <span class="text-[11px]">
-            <span class="text-slate-500 mr-1">Device Location:</span>
-            <strong id="footerDeviceLocation" class="text-cyan-300 font-mono">Detecting...</strong>
+            <span class="text-slate-500 mr-1">Location:</span>
+            <strong class="text-cyan-300 font-mono">Talisay, Batangas, PH</strong>
           </span>
-        </button>
+        </div>
 
-        <!-- Live Clock Pill -->
+        <!-- Live Clock Pill (Philippine Standard Time) -->
         <div class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900/90 border border-emerald-500/30 text-slate-300 shadow-sm">
           <span class="relative flex h-2 w-2">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -828,7 +828,7 @@
           </span>
           <i data-lucide="clock" class="w-3.5 h-3.5 text-emerald-400"></i>
           <span class="text-[11px]">
-            <span class="text-slate-500 mr-1">Device Time:</span>
+            <span class="text-slate-500 mr-1">Philippine Time:</span>
             <strong id="footerLiveClock" class="text-emerald-400 font-mono">--:--:--</strong>
           </span>
         </div>
@@ -951,124 +951,23 @@
       initLiveDeviceFooter();
     });
 
-    // ── Live Device Clock & Location Detector ───────────
+    // ── Live Philippine Standard Time (PST) Clock ──────
     function initLiveDeviceFooter() {
-      // 1. Real-time Device Clock (Seconds Accuracy)
       const clockElem = document.getElementById('footerLiveClock');
       if (clockElem) {
         const updateClock = () => {
           const now = new Date();
           clockElem.textContent = now.toLocaleTimeString('en-US', {
+            timeZone: 'Asia/Manila',
             hour: '2-digit',
             minute: '2-digit',
             second: '2-digit',
             hour12: true
-          });
+          }) + ' PST';
         };
         updateClock();
         setInterval(updateClock, 1000);
       }
-
-      // 2. Real-time Device Location Detection
-      const locElem = document.getElementById('footerDeviceLocation');
-      if (!locElem) return;
-
-      // Instant cache display if previously detected
-      const cached = localStorage.getItem('user_detected_location');
-      if (cached) {
-        locElem.textContent = cached;
-      }
-
-      // Request exact GPS / device location
-      requestExactLocation();
-    }
-
-    // Exact GPS / High-Accuracy Device Geolocation with Reverse Geocoding
-    async function requestExactLocation() {
-      const locElem = document.getElementById('footerDeviceLocation');
-      if (!locElem) return;
-
-      if ('geolocation' in navigator) {
-        navigator.geolocation.getCurrentPosition(
-          async (pos) => {
-            const { latitude, longitude } = pos.coords;
-            try {
-              // 1. BigDataCloud high-accuracy reverse geocoder (free, no API key, CORS open)
-              const res = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`);
-              if (res.ok) {
-                const data = await res.json();
-                const city = data.locality || data.city || '';
-                const province = data.principalSubdivision || '';
-                const country = data.countryName || 'Philippines';
-
-                let formatted = '';
-                if (city && province && city.toLowerCase() !== province.toLowerCase()) {
-                  formatted = `${city}, ${province}`;
-                } else if (city) {
-                  formatted = `${city}, ${country}`;
-                } else if (province) {
-                  formatted = `${province}, ${country}`;
-                } else {
-                  formatted = country;
-                }
-
-                locElem.textContent = formatted;
-                localStorage.setItem('user_detected_location', formatted);
-                return;
-              }
-            } catch (err) {
-              console.warn('BigDataCloud error, trying Nominatim fallback...', err);
-            }
-
-            // 2. OpenStreetMap Nominatim reverse geocode fallback
-            try {
-              const resNom = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`);
-              if (resNom.ok) {
-                const nomData = await resNom.json();
-                const addr = nomData.address || {};
-                const town = addr.municipality || addr.city || addr.town || addr.village || addr.suburb || '';
-                const state = addr.state || addr.region || '';
-                const formatted = (town && state) ? `${town}, ${state}` : (town || state || 'Philippines');
-                locElem.textContent = formatted;
-                localStorage.setItem('user_detected_location', formatted);
-                return;
-              }
-            } catch (nomErr) {
-              console.warn('Nominatim reverse error', nomErr);
-            }
-          },
-          (err) => {
-            // If GPS permission was not yet granted or denied, use IP network fallback
-            if (!localStorage.getItem('user_detected_location')) {
-              fallbackIPLocation();
-            }
-          },
-          { enableHighAccuracy: true, timeout: 8000, maximumAge: 30000 }
-        );
-      } else {
-        fallbackIPLocation();
-      }
-    }
-
-    function fallbackIPLocation() {
-      const locElem = document.getElementById('footerDeviceLocation');
-      if (!locElem) return;
-
-      fetch('https://ipapi.co/json/')
-        .then(res => res.json())
-        .then(data => {
-          if (data.city && data.country_name) {
-            locElem.textContent = `${data.city}, ${data.country_name}`;
-          }
-        })
-        .catch(() => {
-          try {
-            const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-            locElem.textContent = tz ? tz.replace(/_/g, ' ') : 'Philippines';
-          } catch (e) {
-            locElem.textContent = 'Philippines';
-          }
-        });
     }
 
     // Mobile Navigation Toggle
