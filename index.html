@@ -1369,11 +1369,24 @@
       if (q.includes('who is') || q.includes('sino si') || q.includes('tell me about yourself') || q.includes('introduce') || q.includes('about andrei') || q.includes('background') || q.includes('who are you') || q.includes('profile')) {
         return `
           <p>👋 <strong>Meet John Andrei Garcia Agustin:</strong></p>
-          <p class="text-slate-300">Andrei is a dedicated <strong>4th-Year BSIT student (Specialization in Systems Development) at De La Salle Lipa (Class of 2027)</strong>, based in <strong>Talisay, Batangas</strong>.</p>
+          <p class="text-slate-300">Andrei is a <strong>22-year-old</strong> (born <em>September 12, 2004</em>) <strong>4th-Year BSIT student (Specialization in Systems Development) at De La Salle Lipa (Class of 2027)</strong>, based in <strong>Talisay, Batangas</strong>.</p>
           <ul class="list-disc list-inside text-slate-300 space-y-1 pt-1">
             <li>🎯 <strong>Target Role:</strong> QA Engineering Intern / OJT (486 Practicum Hours).</li>
             <li>🔍 <strong>Mindset:</strong> Combines systems development foundations with a sharp eye for edge cases, bug isolation, and user experience.</li>
             <li>🌱 <strong>Work Ethic:</strong> Mabusisi sa detalye (meticulous), open to feedback, and committed to continuous technical improvement.</li>
+          </ul>
+        `;
+      }
+
+      // Age / Birthday / Personal Details
+      if (q.includes('age') || q.includes('how old') || q.includes('birthday') || q.includes('bday') || q.includes('birthdate') || q.includes('born') || q.includes('edad') || q.includes('taon') || q.includes('ilan taon')) {
+        return `
+          <p>🎂 <strong>Age &amp; Birthday:</strong></p>
+          <ul class="space-y-1 text-slate-300">
+            <li>• <strong>Age:</strong> 22 years old</li>
+            <li>• <strong>Birthday:</strong> September 12, 2004</li>
+            <li>• <strong>Academic Status:</strong> 4th-Year BSIT Student at De La Salle Lipa (Ready for 486h QA OJT)</li>
+            <li>• <strong>Location:</strong> Talisay, Batangas (Open to Hybrid/Onsite in Taguig/Makati/NCR)</li>
           </ul>
         `;
       }
