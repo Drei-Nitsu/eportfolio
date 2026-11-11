@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   ShieldCheck,
   CheckCircle2,
@@ -13,6 +13,7 @@ import {
   Award,
   Calendar,
   MapPin,
+  Clock,
   Download,
   Code2,
   Mail
@@ -137,6 +138,53 @@ export default function QAEngineerView() {
   // Modals & Feedback
   const [emailCopied, setEmailCopied] = useState<boolean>(false);
   const [resumeModalOpen, setResumeModalOpen] = useState<boolean>(false);
+
+  // Real-time Clock & Device Location State
+  const [currentTime, setCurrentTime] = useState<string>('');
+  const [deviceLocation, setDeviceLocation] = useState<string>('Detecting...');
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      setCurrentTime(now.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true
+      }));
+    };
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+
+    // Initial timezone fallback
+    try {
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      if (tz) setDeviceLocation(tz.replace(/_/g, ' '));
+    } catch {
+      setDeviceLocation('Philippines');
+    }
+
+    // IP lookup for city and country
+    fetch('https://ipapi.co/json/')
+      .then(res => res.json())
+      .then(data => {
+        if (data.city && data.country_name) {
+          setDeviceLocation(`${data.city}, ${data.country_name}`);
+        }
+      })
+      .catch(() => {
+        fetch('https://freeipapi.com/api/json')
+          .then(res => res.json())
+          .then(d2 => {
+            if (d2.cityName && d2.countryName) {
+              setDeviceLocation(`${d2.cityName}, ${d2.countryName}`);
+            }
+          })
+          .catch(() => {});
+      });
+
+    return () => clearInterval(interval);
+  }, []);
 
   const copyEmail = () => {
     navigator.clipboard.writeText('johnandreiagustin12@gmail.com');
@@ -596,6 +644,58 @@ export default function QAEngineerView() {
         </section>
 
       </main>
+
+      {/* Dynamic Real-Time Status & Location Footer */}
+      <footer className="border-t border-slate-800/80 bg-slate-950/90 backdrop-blur-md py-8 px-4 sm:px-6 lg:px-8 text-xs font-mono text-slate-400">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-5 text-center md:text-left">
+          {/* Identity & Education */}
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold text-sm shrink-0">
+              JA
+            </div>
+            <div>
+              <div className="text-white font-bold text-sm tracking-wide flex items-center justify-center md:justify-start gap-2">
+                <span>John Andrei Garcia Agustin</span>
+                <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                  OJT Ready
+                </span>
+              </div>
+              <div className="text-[11px] text-slate-400 flex flex-wrap items-center justify-center md:justify-start gap-1.5 mt-0.5">
+                <span>4th Year BSIT</span>
+                <span className="text-slate-600">•</span>
+                <span>De La Salle Lipa</span>
+                <span className="text-slate-600">•</span>
+                <span className="text-emerald-400 font-medium">486 Hours Requirement</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Live Device Location & Real-Time Clock */}
+          <div className="flex flex-wrap items-center justify-center md:justify-end gap-2.5">
+            {/* Device Location Pill */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900/90 border border-slate-800 text-slate-300 shadow-sm">
+              <MapPin className="w-3.5 h-3.5 text-cyan-400" />
+              <span className="text-[11px]">
+                <span className="text-slate-500 mr-1">Device Location:</span>
+                <strong className="text-cyan-300 font-mono">{deviceLocation}</strong>
+              </span>
+            </div>
+
+            {/* Live Clock Pill */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900/90 border border-emerald-500/30 text-slate-300 shadow-sm">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <Clock className="w-3.5 h-3.5 text-emerald-400" />
+              <span className="text-[11px]">
+                <span className="text-slate-500 mr-1">Device Time:</span>
+                <strong className="text-emerald-400 font-mono">{currentTime || '--:--:--'}</strong>
+              </span>
+            </div>
+          </div>
+        </div>
+      </footer>
 
       {/* Resume Preview Modal */}
       {resumeModalOpen && (

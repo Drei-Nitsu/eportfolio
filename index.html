@@ -796,6 +796,58 @@
     </div>
   </section>
 
+  <!-- ── Dynamic Real-Time Status & Location Footer ──── -->
+  <footer class="border-t border-slate-800/80 bg-[#050811]/95 backdrop-blur-md py-8 px-4 sm:px-6 lg:px-8 text-xs code-font text-slate-400">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-5 text-center md:text-left">
+      <!-- Left: Identity & Education -->
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold text-sm shrink-0">
+          JA
+        </div>
+        <div>
+          <div class="text-white font-bold text-sm tracking-wide flex items-center justify-center md:justify-start gap-2">
+            <span>John Andrei Garcia Agustin</span>
+            <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              OJT Ready
+            </span>
+          </div>
+          <div class="text-[11px] text-slate-400 flex flex-wrap items-center justify-center md:justify-start gap-1.5 mt-0.5">
+            <span>4th Year BSIT</span>
+            <span class="text-slate-600">•</span>
+            <span>De La Salle Lipa</span>
+            <span class="text-slate-600">•</span>
+            <span class="text-emerald-400 font-medium">486 Hours Requirement</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Live Device Location & Real-Time Clock -->
+      <div class="flex flex-wrap items-center justify-center md:justify-end gap-2.5">
+        <!-- Device Location Pill -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900/90 border border-slate-800 text-slate-300 shadow-sm">
+          <i data-lucide="map-pin" class="w-3.5 h-3.5 text-cyan-400"></i>
+          <span class="text-[11px]">
+            <span class="text-slate-500 mr-1">Device Location:</span>
+            <strong id="footerDeviceLocation" class="text-cyan-300 font-mono">Detecting...</strong>
+          </span>
+        </div>
+
+        <!-- Live Clock Pill -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900/90 border border-emerald-500/30 text-slate-300 shadow-sm">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          <i data-lucide="clock" class="w-3.5 h-3.5 text-emerald-400"></i>
+          <span class="text-[11px]">
+            <span class="text-slate-500 mr-1">Device Time:</span>
+            <strong id="footerLiveClock" class="text-emerald-400 font-mono">--:--:--</strong>
+          </span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
   <!-- ── Floating AI Chat Trigger ─────────────────────── -->
   <div class="fixed bottom-6 right-6 z-40">
     <button id="aiChatToggleBtn" onclick="toggleAIChat()" class="flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-slate-900/95 hover:bg-slate-800 border border-emerald-500/50 hover:border-emerald-400 text-emerald-400 text-xs font-bold code-font shadow-2xl transition-all transform hover:scale-105 group">
@@ -903,12 +955,67 @@
 
   <!-- ── Client Scripts ──────────────────────────────── -->
   <script>
-    // Initialize Lucide Icons
+    // Initialize Lucide Icons & Live Device Footer
     window.addEventListener('DOMContentLoaded', () => {
       if (typeof lucide !== 'undefined') {
         lucide.createIcons();
       }
+      initLiveDeviceFooter();
     });
+
+    // ── Live Device Clock & Location Detector ───────────
+    function initLiveDeviceFooter() {
+      // 1. Real-time Device Clock (Seconds Accuracy)
+      const clockElem = document.getElementById('footerLiveClock');
+      if (clockElem) {
+        const updateClock = () => {
+          const now = new Date();
+          clockElem.textContent = now.toLocaleTimeString('en-US', {
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: true
+          });
+        };
+        updateClock();
+        setInterval(updateClock, 1000);
+      }
+
+      // 2. Real-time Device Location Detection
+      const locElem = document.getElementById('footerDeviceLocation');
+      if (locElem) {
+        // Fast instant fallback from browser timezone
+        try {
+          const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+          if (tz) {
+            locElem.textContent = tz.replace(/_/g, ' ');
+          } else {
+            locElem.textContent = 'Philippines';
+          }
+        } catch (e) {
+          locElem.textContent = 'Philippines';
+        }
+
+        // Precise location via fast non-intrusive IP lookup
+        fetch('https://ipapi.co/json/')
+          .then(res => res.json())
+          .then(data => {
+            if (data.city && data.country_name) {
+              locElem.textContent = `${data.city}, ${data.country_name}`;
+            }
+          })
+          .catch(() => {
+            fetch('https://freeipapi.com/api/json')
+              .then(res => res.json())
+              .then(d2 => {
+                if (d2.cityName && d2.countryName) {
+                  locElem.textContent = `${d2.cityName}, ${d2.countryName}`;
+                }
+              })
+              .catch(() => {});
+          });
+      }
+    }
 
     // Mobile Navigation Toggle
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
