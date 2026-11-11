@@ -1196,8 +1196,8 @@
     function generateAIResponse(userInput) {
       const q = userInput.toLowerCase();
 
-      // ── 1. Top HR Interview Question: Why Should We Hire You? ──
-      if (q.includes('why should we hire') || q.includes('why hire') || q.includes('why choose you') || q.includes('bakit ikaw') || q.includes('bakit ka namin') || q.includes('why should i hire') || q.includes('why accept') || q.includes('why you')) {
+      // ── 1. Top HR Question: Why Should We Hire You? ──
+      if (q.includes('why should we hire') || q.includes('why hire') || q.includes('why choose you') || q.includes('why should i hire') || q.includes('why accept you') || q.includes('bakit ikaw') || q.includes('bakit ka namin') || q.includes('bakit ka dapat')) {
         return `
           <p>🌟 <strong>Why You Should Hire Andrei for QA:</strong></p>
           <div class="space-y-1.5 text-slate-300">
@@ -1219,24 +1219,181 @@
         `;
       }
 
-      // Availability / Hiring / Intern / OJT
-      if (q.includes('hire') || q.includes('role') || q.includes('intern') || q.includes('ojt') || q.includes('practicum') || q.includes('open') || q.includes('job') || q.includes('opportunity') || q.includes('available')) {
+      // ── 2. Why QA instead of Developer / Motivation ──
+      if (q.includes('why qa') || q.includes('choose qa') || q.includes('instead of being a developer') || q.includes('instead of developer') || q.includes('why not developer') || q.includes('why not dev') || q.includes('why testing') || q.includes('bakit qa') || q.includes('bakit testing') || q.includes('bakit ka nag qa') || q.includes('why quality')) {
         return `
-          <p><strong>Yes, definitely!</strong> Andrei is currently a <strong>4th-Year BSIT student (Specialization in Systems Development) at De La Salle Lipa (Class of 2027)</strong> and is specifically seeking a <strong>Quality Assurance (QA) Internship / OJT opportunity</strong>.</p>
-          <p class="text-slate-300">He is ready to render his required <strong>486 practicum hours</strong> (Remote, Hybrid, or Onsite in <strong>Taguig / Makati</strong>, Metro Manila, or Batangas) and contribute real manual testing, test case design, and defect reporting.</p>
-          <div class="pt-1.5 flex flex-wrap gap-1.5">
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=johnandreiagustin12@gmail.com&su=QA%20Internship%20Inquiry%20-%20John%20Andrei%20Agustin" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg bg-emerald-500 text-slate-950 font-bold text-[10px] code-font hover:bg-emerald-400 transition-colors inline-flex items-center gap-1 shadow-sm">
-              <i data-lucide="mail" class="w-3 h-3"></i> Open in Gmail
-            </a>
-            <button onclick="copyEmailToClipboard(this)" class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 font-bold text-[10px] code-font hover:bg-slate-700 border border-slate-700 transition-colors">
-              📋 Copy Email
-            </button>
+          <p>💡 <strong>Why QA Instead of Full-Time Development?</strong></p>
+          <div class="space-y-1.5 text-slate-300">
+            <p>While Andrei studies Systems Development and writes code, his real passion is in <strong>software quality, defect prevention, and user experience</strong>:</p>
+            <ul class="list-disc list-inside space-y-1">
+              <li>🛡️ <strong>Breaking systems before users do:</strong> He finds genuine satisfaction in uncovering edge cases, input glitches, and workflow flaws before software hits production.</li>
+              <li>🤝 <strong>Empathy for Developers:</strong> Because he has built apps with Node.js, Flutter, and React, he understands how developers think — making his bug reports clearer, respectful, and faster to fix.</li>
+              <li>✨ <strong>High Impact:</strong> He believes catching a critical bug early saves businesses thousands in lost revenue and customer trust.</li>
+            </ul>
           </div>
         `;
       }
 
-      // 486 Hours Requirement / Practicum / OJT Details
-      if (q.includes('486') || q.includes('hour') || q.includes('duration') || q.includes('ojt requirement') || q.includes('ojt hour') || q.includes('internship requirement')) {
+      // ── 3. Strengths and Weaknesses ──
+      if (q.includes('weakness') || q.includes('weaknesses') || q.includes('kahinaan') || q.includes('strengths and weaknesses') || q.includes('strength and weakness') || q.includes('greatest strength') || (q.includes('strength') && !q.includes('tech stack'))) {
+        return `
+          <p>⭐ <strong>Strengths &amp; Growth Areas:</strong></p>
+          <div class="space-y-2 text-slate-300">
+            <div>
+              <strong class="text-emerald-400">💪 Core Strengths:</strong>
+              <ul class="list-disc list-inside space-y-0.5 pt-0.5">
+                <li><strong>Attention to Detail:</strong> Mabusisi mag-test — checks input boundaries, negative numbers, and unexpected user clicks.</li>
+                <li><strong>Fast Learner:</strong> Rapidly picks up documentation, test tooling, and internal company workflows.</li>
+                <li><strong>Respectful Team Communication:</strong> Communicates defects objectively with clear reproduction steps without assigning blame.</li>
+              </ul>
+            </div>
+            <div>
+              <strong class="text-cyan-400">🌱 Growth Area / Weakness:</strong>
+              <p class="pt-0.5 text-slate-300">He is transparent that he is transitioning from purely manual testing into automated testing (Playwright & Postman). He compensates by practicing daily and seeking mentorship!</p>
+            </div>
+          </div>
+        `;
+      }
+
+      // ── 4. Start Date & Scheduling (Dec 1 – Jan 16) ──
+      if (q.includes('start') || q.includes('when can') || q.includes('start date') || q.includes('kailan pwede magstart') || q.includes('start timeline') || q.includes('earliest start') || q.includes('onboarding schedule')) {
+        return `
+          <p>📅 <strong>Internship Start Date &amp; Availability:</strong></p>
+          <div class="space-y-1.5 text-slate-300">
+            <p>Andrei is officially ready and eligible to start his 486-hour QA internship between <strong>December 1, 2026 to January 16, 2027</strong> (or aligned with your company's batch onboarding date).</p>
+            <ul class="list-disc list-inside space-y-0.5">
+              <li><strong>Pace:</strong> Available for full-time or company-prescribed weekly hours.</li>
+              <li><strong>Paperwork:</strong> MOA, Endorsement Letter, and practicum forms ready for De La Salle Lipa coordination.</li>
+            </ul>
+          </div>
+          <div class="pt-1.5 flex flex-wrap gap-1.5">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=johnandreiagustin12@gmail.com&su=QA%20Internship%20Start%20Date%20Discussion%20-%20John%20Andrei%20Agustin" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg bg-emerald-500 text-slate-950 font-bold text-[10px] code-font hover:bg-emerald-400 transition-colors inline-flex items-center gap-1 shadow-sm">
+              <i data-lucide="mail" class="w-3 h-3"></i> Coordinate Start Date
+            </a>
+          </div>
+        `;
+      }
+
+      // ── 5. Outside of Tech / Hobbies / Personal Life ──
+      if (q.includes('outside of tech') || q.includes('outside tech') || q.includes('outside of work') || q.includes('outside work') || q.includes('hobby') || q.includes('hobbies') || q.includes('free time') || q.includes('when not coding') || q.includes('gaming') || q.includes('games') || q.includes('libangan')) {
+        return `
+          <p>🎮 <strong>Outside of QA Testing (Personality &amp; Hobbies):</strong></p>
+          <ul class="list-disc list-inside text-slate-300 space-y-1">
+            <li>🔍 <strong>App Explorer:</strong> Loves testing everyday mobile/web apps and mentally noting UI/UX friction and responsiveness flaws.</li>
+            <li>🕹️ <strong>Gaming &amp; Strategy:</strong> Enjoys casual and strategy gaming — which fuels his puzzle-solving mindset and patience when tracking tricky bugs.</li>
+            <li>🗺️ <strong>Tech Roadmaps:</strong> Regularly follows industry roadmaps (JPCS DevRoutes member) to explore new QA and tech trends.</li>
+            <li>☕ <strong>Life in Batangas:</strong> Enjoys coffee breaks, spending quality time with family and friends in Talisay, and continuous personal growth.</li>
+          </ul>
+        `;
+      }
+
+      // ── 6. Automation Tools Learning / Playwright / Postman ──
+      if (q.includes('automation') || q.includes('playwright') || q.includes('postman') || q.includes('tools are you learning') || q.includes('learning tools') || q.includes('tools you learn') || q.includes('upskilling') || q.includes('currently learning')) {
+        return `
+          <p>🤖 <strong>Automation Tools Andrei is Actively Learning:</strong></p>
+          <div class="space-y-1.5 text-slate-300">
+            <p>Andrei's primary focus for this OJT is <strong>solid manual testing</strong>, while steadily expanding into automation:</p>
+            <ul class="list-disc list-inside space-y-0.5">
+              <li><strong>Playwright (TypeScript):</strong> Writing locator strategies (<code>getByRole</code>, <code>getByTestId</code>), auto-waiting assertions, and page redirects.</li>
+              <li><strong>Postman:</strong> Creating API request collections, validating HTTP 200/201 status codes, and checking JSON response payloads.</li>
+              <li><strong>Diagnostic Tooling:</strong> Proficient with Chrome DevTools (Console, Network payload inspection, Mobile Device Emulation).</li>
+            </ul>
+            <p class="text-slate-400 text-[11px] pt-1">He is excited to be guided and mentored by senior QA automation engineers!</p>
+          </div>
+        `;
+      }
+
+      // ── 7. Developer Rejection / Works on my machine ──
+      if (q.includes('works on my machine') || q.includes('reject') || q.includes('not a bug') || q.includes('developer says') || q.includes('contest a bug') || q.includes('refuse to fix')) {
+        return `
+          <p>🛡️ <strong>If a developer rejects a bug or says <em>"It works on my machine"</em>:</strong></p>
+          <ul class="list-disc list-inside text-slate-300 space-y-1">
+            <li><strong>Objective Proof:</strong> Andrei provides an end-to-end screen recording, exact environment details (OS, browser build, viewport), and Chrome DevTools console/network logs.</li>
+            <li><strong>Cross-Check Specs:</strong> He re-checks the User Stories and Acceptance Criteria to confirm expected vs actual behavior.</li>
+            <li><strong>Collaboration over Blame:</strong> He approaches the dev with a team mindset — QA and Developers share the same mission: shipping reliable software to users.</li>
+          </ul>
+        `;
+      }
+
+      // ── 8. Bug Prioritization / Triage Under Pressure ──
+      if (q.includes('prioritize') || q.includes('priority') || q.includes('triage') || q.includes('severity') || q.includes('under pressure') || q.includes('tight deadline') || q.includes('multiple bug')) {
+        return `
+          <p>⏱️ <strong>How Andrei Prioritizes Bugs (Triage by Severity &amp; Impact):</strong></p>
+          <ul class="list-disc list-inside text-slate-300 space-y-1">
+            <li>🚨 <strong>P0 / Blocker:</strong> System crashes, data corruption, calculation errors (e.g. discount bugs in POS), or authentication failures. Must be reported and tested immediately.</li>
+            <li>⚠️ <strong>P1 / Critical:</strong> Major features with broken workflows that lack simple workarounds.</li>
+            <li>ℹ️ <strong>P2 / Minor:</strong> Cosmetic flaws, visual alignment, or minor copy errors that can wait until core flows are stable.</li>
+          </ul>
+        `;
+      }
+
+      // ── 9. Tricky Bug Example ──
+      if (q.includes('tricky bug') || q.includes('challenging bug') || q.includes('example of a bug') || q.includes('bug you found') || q.includes('best bug') || q.includes('proud bug')) {
+        return `
+          <p>🐞 <strong>Examples of Tricky Bugs Andrei Has Caught:</strong></p>
+          <ul class="list-disc list-inside text-slate-300 space-y-1">
+            <li><strong>Fedelicious Wings POS:</strong> Identified an arithmetic boundary flaw where discount inputs could accept negative values, resulting in negative totals and corrupting sales ledgers. Also verified database transaction rollbacks on cancelled table orders.</li>
+            <li><strong>Barangay Safety Mobile App:</strong> Tested GPS geo-fencing to ensure incidents could not be pinned outside Lipa City boundaries, and validated photo upload size boundaries on mobile forms.</li>
+          </ul>
+        `;
+      }
+
+      // ── 10. Overtime / Flexible Schedule ──
+      if (q.includes('overtime') || q.includes('ot') || q.includes('flexible') || q.includes('weekend') || q.includes('extend hour')) {
+        return `
+          <p>⏰ <strong>Overtime &amp; Schedule Flexibility:</strong></p>
+          <p class="text-slate-300">Yes! Andrei is dedicated and willing to accommodate team sprint releases, critical bug verifications, or crunch periods when deployment deadlines require it.</p>
+        `;
+      }
+
+      // ── 11. Age & Birthday ──
+      if (q.includes('age') || q.includes('how old') || q.includes('birthday') || q.includes('bday') || q.includes('birthdate') || q.includes('born') || q.includes('edad') || q.includes('taon') || q.includes('ilan taon')) {
+        return `
+          <p>🎂 Andrei is <strong>22 years old</strong>, born on <strong>September 12, 2004</strong>.</p>
+        `;
+      }
+
+      // ── 12. Tell Me About Yourself / Who is Andrei ──
+      if (q.includes('tell me about yourself') || q.includes('who is andrei') || q.includes('sino si andrei') || q.includes('introduce') || q.includes('about andrei') || q.includes('who are you') || q.includes('profile')) {
+        return `
+          <p>👋 <strong>Meet John Andrei Garcia Agustin:</strong></p>
+          <p class="text-slate-300">Andrei is a <strong>22-year-old</strong> (born <em>September 12, 2004</em>) <strong>4th-Year BSIT student (Specialization in Systems Development) at De La Salle Lipa (Class of 2027)</strong>, based in <strong>Talisay, Batangas</strong>.</p>
+          <ul class="list-disc list-inside text-slate-300 space-y-1 pt-1">
+            <li>🎯 <strong>Target Role:</strong> QA Engineering Intern / OJT (486 Practicum Hours).</li>
+            <li>🔍 <strong>Mindset:</strong> Combines systems development foundations with a sharp eye for edge cases, bug isolation, and user experience.</li>
+            <li>🌱 <strong>Work Ethic:</strong> Mabusisi sa detalye (meticulous), open to feedback, and committed to continuous technical improvement.</li>
+          </ul>
+        `;
+      }
+
+      // ── 13. Fedelicious POS Project ──
+      if (q.includes('fedelicious') || q.includes('wings') || q.includes('pos')) {
+        return `
+          <p><strong>Fedelicious Wings POS</strong> is a locally hosted web prototype (Node.js, Express, MySQL) built to eliminate ordering and pricing errors for small dining operations.</p>
+          <p class="text-slate-300"><strong>Andrei's QA focus:</strong></p>
+          <ul class="list-disc list-inside text-slate-300 space-y-0.5">
+            <li>Arithmetic boundary testing to prevent negative discounts.</li>
+            <li>Order workflow verification from draft to receipt invoice.</li>
+            <li>MySQL transaction rollback checks for cancelled items.</li>
+          </ul>
+        `;
+      }
+
+      // ── 14. Barangay Safety Incident App ──
+      if (q.includes('barangay') || q.includes('safety') || q.includes('incident app')) {
+        return `
+          <p><strong>Barangay Safety Incident Reporting</strong> is a cross-platform mobile system (Flutter, Supabase, PostgreSQL, PostGIS) for Lipa City authorities.</p>
+          <p class="text-slate-300"><strong>Andrei's QA focus:</strong></p>
+          <ul class="list-disc list-inside text-slate-300 space-y-0.5">
+            <li>GPS boundary validation to ensure pins remain within Lipa City limits.</li>
+            <li>Mobile form testing (mandatory inputs & photo file upload boundaries).</li>
+            <li>Role-Based Access Control (RBAC) between citizen reports and admin resolution controls.</li>
+          </ul>
+        `;
+      }
+
+      // ── 15. 486 Hours Requirement ──
+      if (q.includes('486') || q.includes('hour') || q.includes('duration') || q.includes('ojt requirement') || q.includes('practicum requirement')) {
         return `
           <p>⏱️ <strong>Internship Requirement: 486 Hours</strong></p>
           <p class="text-slate-300">As a graduating 4th-Year BS Information Technology student (Specialization in Systems Development) at <strong>De La Salle Lipa</strong>, Andrei is required to render <strong>486 hours</strong> of On-the-Job Training (OJT) / Practicum.</p>
@@ -1256,8 +1413,56 @@
         `;
       }
 
-      // Skills / What can he do
-      if (q.includes('skill') || q.includes('stack') || q.includes('tools') || q.includes('tech') || q.includes('what can') || q.includes('strengths')) {
+      // ── 16. Location & Work Setup / Taguig / Makati ──
+      if (q.includes('location') || q.includes('where are') || q.includes('where is') || q.includes('remote') || q.includes('onsite') || q.includes('hybrid') || q.includes('taguig') || q.includes('makati') || q.includes('bgc') || q.includes('manila') || q.includes('batangas') || q.includes('lipa') || q.includes('talisay') || q.includes('setup')) {
+        return `
+          <p>📍 <strong>Location &amp; Work Setup:</strong></p>
+          <ul class="space-y-1 text-slate-300">
+            <li>🏡 <strong>Home Base:</strong> Talisay, Batangas (studying at De La Salle Lipa).</li>
+            <li>🚗 <strong>Hybrid / Onsite Focus:</strong> Highly open and ready to report onsite or hybrid in <strong>Taguig / Makati (BGC / NCR)</strong> as well as Batangas areas.</li>
+            <li>💻 <strong>Remote Setup:</strong> Dedicated PC workstation with high-speed fiber internet and power backup readiness.</li>
+          </ul>
+        `;
+      }
+
+      // ── 17. Education / School ──
+      if (q.includes('school') || q.includes('education') || q.includes('dlsl') || q.includes('college') || q.includes('la salle') || q.includes('graduate') || q.includes('major') || q.includes('specialization') || q.includes('track')) {
+        return `
+          <p>🎓 <strong>Education Background:</strong></p>
+          <ul class="space-y-1 text-slate-300">
+            <li>• <strong>De La Salle Lipa (2023 – Present):</strong> Bachelor of Science in Information Technology (BSIT) · <strong>Specialization in Systems Development</strong> · <em>4th Year Student (Graduating Class 2027)</em>.</li>
+            <li>• <strong>OJT Practicum Requirement:</strong> 486 Hours of Quality Assurance & Testing training.</li>
+            <li>• <strong>Core Focus:</strong> Software QA & Testing, Systems Architecture, Database Management, and Web/Mobile Development.</li>
+          </ul>
+        `;
+      }
+
+      // ── 18. Certifications ──
+      if (q.includes('cert') || q.includes('cisco') || q.includes('accenture') || q.includes('devroutes')) {
+        return `
+          <p>🏆 <strong>Verified Certifications:</strong></p>
+          <ul class="space-y-1 text-slate-300">
+            <li>• <strong>Cisco Networking Academy:</strong> Python Essentials 1 & Python Essentials 2.</li>
+            <li>• <strong>Cisco Networking Academy:</strong> Cyber Threat Management.</li>
+            <li>• <strong>Accenture:</strong> Skills to Succeed Academy.</li>
+            <li>• <strong>JPCS – DLSL Chapter:</strong> DevRoutes (Learning with Roadmaps).</li>
+          </ul>
+        `;
+      }
+
+      // ── 19. Career Goals / 3-5 Years ──
+      if (q.includes('goal') || q.includes('career') || q.includes('future') || q.includes('3 year') || q.includes('5 year') || q.includes('where do you see')) {
+        return `
+          <p>🎯 <strong>Career Vision (3 to 5 Years):</strong></p>
+          <ul class="list-disc list-inside text-slate-300 space-y-1">
+            <li><strong>Near Term (1–2 Years):</strong> Complete a stellar 486-hour QA Internship &rarr; Transition into a Junior QA Engineer with deep mastery of manual exploratory testing and Postman API automation.</li>
+            <li><strong>Long Term (3–5 Years):</strong> Grow into a full-fledged Software Development Engineer in Test (SDET) or QA Lead, designing end-to-end Playwright pipelines integrated into CI/CD workflows.</li>
+          </ul>
+        `;
+      }
+
+      // ── 20. General Skills & Tech Stack ──
+      if (q.includes('skill') || q.includes('stack') || q.includes('competenc') || q.includes('technologies') || q.includes('languages') || q.includes('what can you do')) {
         return `
           <p>Here is Andrei's official CV skillset &amp; tech stack breakdown:</p>
           <ul class="list-disc list-inside space-y-1 text-slate-300">
@@ -1272,70 +1477,23 @@
         `;
       }
 
-      // Fedelicious POS Project
-      if (q.includes('fedelicious') || q.includes('wings') || q.includes('pos') || q.includes('restaurant')) {
+      // ── 21. General Availability & Hiring (Broad Fallback) ──
+      if (q.includes('hire') || q.includes('intern') || q.includes('ojt') || q.includes('practicum') || q.includes('opportunity') || q.includes('available') || q.includes('open for') || q.includes('job')) {
         return `
-          <p><strong>Fedelicious Wings POS</strong> is a locally hosted web prototype (Node.js, Express, MySQL) built to eliminate ordering and pricing errors for small dining operations.</p>
-          <p class="text-slate-300"><strong>Andrei's QA focus:</strong></p>
-          <ul class="list-disc list-inside text-slate-300 space-y-0.5">
-            <li>Arithmetic boundary testing to prevent negative discounts.</li>
-            <li>Order workflow verification from draft to receipt invoice.</li>
-            <li>MySQL transaction rollback checks for cancelled items.</li>
-          </ul>
+          <p><strong>Yes, definitely!</strong> Andrei is currently a <strong>4th-Year BSIT student (Specialization in Systems Development) at De La Salle Lipa (Class of 2027)</strong> and is specifically seeking a <strong>Quality Assurance (QA) Internship / OJT opportunity</strong>.</p>
+          <p class="text-slate-300">He is ready to render his required <strong>486 practicum hours</strong> (Remote, Hybrid, or Onsite in <strong>Taguig / Makati</strong>, Metro Manila, or Batangas) and contribute real manual testing, test case design, and defect reporting.</p>
+          <div class="pt-1.5 flex flex-wrap gap-1.5">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=johnandreiagustin12@gmail.com&su=QA%20Internship%20Inquiry%20-%20John%20Andrei%20Agustin" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg bg-emerald-500 text-slate-950 font-bold text-[10px] code-font hover:bg-emerald-400 transition-colors inline-flex items-center gap-1 shadow-sm">
+              <i data-lucide="mail" class="w-3 h-3"></i> Open in Gmail
+            </a>
+            <button onclick="copyEmailToClipboard(this)" class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 font-bold text-[10px] code-font hover:bg-slate-700 border border-slate-700 transition-colors">
+              📋 Copy Email
+            </button>
+          </div>
         `;
       }
 
-      // Barangay Safety Incident App
-      if (q.includes('barangay') || q.includes('safety') || q.includes('mobile') || q.includes('flutter') || q.includes('lipa')) {
-        return `
-          <p><strong>Barangay Safety Incident Reporting</strong> is a cross-platform mobile system (Flutter, Supabase, PostgreSQL, PostGIS) for Lipa City authorities.</p>
-          <p class="text-slate-300"><strong>Andrei's QA focus:</strong></p>
-          <ul class="list-disc list-inside text-slate-300 space-y-0.5">
-            <li>GPS boundary validation to ensure pins remain within Lipa City limits.</li>
-            <li>Mobile form testing (mandatory inputs & photo file upload boundaries).</li>
-            <li>Role-Based Access Control (RBAC) between citizen reports and admin resolution controls.</li>
-          </ul>
-        `;
-      }
-
-      // Automation / Playwright / Postman
-      if (q.includes('playwright') || q.includes('automation') || q.includes('postman') || q.includes('api') || q.includes('learning')) {
-        return `
-          <p>Andrei is transparent about his technical journey: his immediate bread-and-butter is <strong>thorough manual testing and sharp bug hunting</strong>, while actively upskilling in automation:</p>
-          <ul class="list-disc list-inside text-slate-300 space-y-0.5">
-            <li><strong>Playwright (TypeScript):</strong> Writing locator strategies (<code>getByRole</code>), auto-waiting assertions, and page redirects.</li>
-            <li><strong>Postman:</strong> Creating API collections, validating HTTP 200/201 status codes, and checking JSON contracts.</li>
-          </ul>
-          <p class="text-slate-400 text-[11px] pt-1">He is eager to be mentored by senior SDETs and QA leads!</p>
-        `;
-      }
-
-      // Education / School
-      if (q.includes('school') || q.includes('education') || q.includes('dlsl') || q.includes('college') || q.includes('la salle') || q.includes('graduate') || q.includes('student') || q.includes('major') || q.includes('specialization') || q.includes('track')) {
-        return `
-          <p>🎓 <strong>Education Background:</strong></p>
-          <ul class="space-y-1 text-slate-300">
-            <li>• <strong>De La Salle Lipa (2023 – Present):</strong> Bachelor of Science in Information Technology (BSIT) · <strong>Specialization in Systems Development</strong> · <em>4th Year Student (Graduating Class 2027)</em>.</li>
-            <li>• <strong>OJT Practicum Requirement:</strong> 486 Hours of Quality Assurance & Testing training.</li>
-            <li>• <strong>Core Focus:</strong> Software QA & Testing, Systems Architecture, Database Management, and Web/Mobile Development.</li>
-          </ul>
-        `;
-      }
-
-      // Certifications
-      if (q.includes('cert') || q.includes('cisco') || q.includes('accenture') || q.includes('devroutes') || q.includes('python')) {
-        return `
-          <p>🏆 <strong>Verified Certifications:</strong></p>
-          <ul class="space-y-1 text-slate-300">
-            <li>• <strong>Cisco Networking Academy:</strong> Python Essentials 1 & Python Essentials 2.</li>
-            <li>• <strong>Cisco Networking Academy:</strong> Cyber Threat Management.</li>
-            <li>• <strong>Accenture:</strong> Skills to Succeed Academy.</li>
-            <li>• <strong>JPCS – DLSL Chapter:</strong> DevRoutes (Learning with Roadmaps).</li>
-          </ul>
-        `;
-      }
-
-      // Contact
+      // ── 22. Contact ──
       if (q.includes('contact') || q.includes('email') || q.includes('reach') || q.includes('github') || q.includes('message')) {
         return `
           <p>You can get in touch with Andrei right away:</p>
@@ -1357,167 +1515,26 @@
         `;
       }
 
-      // Greetings & Small Talk
+      // ── 23. Greetings & Small Talk ──
       if (q === 'hi' || q === 'hello' || q === 'hey' || q.includes('kumusta') || q.includes('good morning') || q.includes('good afternoon') || q.includes('good evening') || q === 'sup') {
         return `
           <p>Kumusta! 👋 Great to meet you! I am Andrei's AI QA Assistant. How can I help you today? You can ask me about his <strong>manual QA skills</strong>, <strong>tested projects</strong>, <strong>certifications</strong>, or <strong>job availability</strong>!</p>
         `;
       }
 
-      // Gratitude / Polite acknowledgments
+      // ── 24. Gratitude / Polite acknowledgments ──
       if (q.includes('thank') || q.includes('salamat') || q === 'ok' || q === 'cool' || q === 'great' || q === 'nice') {
         return `
           <p>You're very welcome! 😊 Feel free to ask more, or reach out to Andrei directly if you'd like to schedule an interview or discussion. Have a great day!</p>
         `;
       }
 
-      // Salary / Compensation / Rates / Allowance / Stipend
+      // ── 25. Salary / Compensation / Rates / Allowance ──
       if (q.includes('salary') || q.includes('rate') || q.includes('compensation') || q.includes('pay') || q.includes('allowance') || q.includes('budget') || q.includes('stipend')) {
         return `
           <p>💼 <strong>Internship Allowance & Terms:</strong></p>
           <p class="text-slate-300">As a 4th-Year BSIT student seeking a QA Internship / OJT, Andrei's primary priority is <strong>hands-on industry experience, mentorship, and fulfilling practicum hours</strong>. Any stipend or allowance is aligned with your company's standard intern program.</p>
           <p class="text-slate-400 text-[11px] pt-1">Feel free to discuss details directly with Andrei via email!</p>
-        `;
-      }
-
-      // Start Date & Scheduling
-      if (q.includes('start') || q.includes('when can') || q.includes('schedule') || q.includes('immediate') || q.includes('deployment') || q.includes('timeline')) {
-        return `
-          <p>📅 <strong>Availability & Start Timeline:</strong></p>
-          <p class="text-slate-300">Andrei is graduating in 2027 from De La Salle Lipa. Depending on your onboarding schedule and internship timeline, he is <strong>ready to align and start promptly</strong> upon agreement.</p>
-        `;
-      }
-
-      // Who is Andrei / Tell me about yourself / Sino si Andrei / Introduction
-      if (q.includes('who is') || q.includes('sino si') || q.includes('tell me about yourself') || q.includes('introduce') || q.includes('about andrei') || q.includes('background') || q.includes('who are you') || q.includes('profile')) {
-        return `
-          <p>👋 <strong>Meet John Andrei Garcia Agustin:</strong></p>
-          <p class="text-slate-300">Andrei is a <strong>22-year-old</strong> (born <em>September 12, 2004</em>) <strong>4th-Year BSIT student (Specialization in Systems Development) at De La Salle Lipa (Class of 2027)</strong>, based in <strong>Talisay, Batangas</strong>.</p>
-          <ul class="list-disc list-inside text-slate-300 space-y-1 pt-1">
-            <li>🎯 <strong>Target Role:</strong> QA Engineering Intern / OJT (486 Practicum Hours).</li>
-            <li>🔍 <strong>Mindset:</strong> Combines systems development foundations with a sharp eye for edge cases, bug isolation, and user experience.</li>
-            <li>🌱 <strong>Work Ethic:</strong> Mabusisi sa detalye (meticulous), open to feedback, and committed to continuous technical improvement.</li>
-          </ul>
-        `;
-      }
-
-      // Age / Birthday / Personal Details
-      if (q.includes('age') || q.includes('how old') || q.includes('birthday') || q.includes('bday') || q.includes('birthdate') || q.includes('born') || q.includes('edad') || q.includes('taon') || q.includes('ilan taon')) {
-        return `
-          <p>🎂 Andrei is <strong>22 years old</strong>, born on <strong>September 12, 2004</strong>.</p>
-        `;
-      }
-
-      // Why QA / Motivation / Bakit QA
-      if (q.includes('why qa') || q.includes('bakit qa') || q.includes('why testing') || q.includes('passion') || q.includes('why quality') || q.includes('bakit testing') || q.includes('why not dev') || q.includes('bakit ka nag qa')) {
-        return `
-          <p>💡 <strong>Why Quality Assurance (QA)?</strong></p>
-          <p class="text-slate-300">While Andrei studies Systems Development and writes code, his real passion ignited when testing academic systems:</p>
-          <ul class="list-disc list-inside text-slate-300 space-y-1 pt-1">
-            <li>🛡️ <strong>Breaking it before users do:</strong> He finds genuine satisfaction in uncovering edge cases, input glitches, and workflow flaws before software hits production.</li>
-            <li>🤝 <strong>Empathy for Developers:</strong> Because he has built apps with Node.js, Flutter, and React, he understands how developers think — making his bug reports clearer and easier to fix.</li>
-            <li>✨ <strong>Quality Standards:</strong> He believes high-quality software builds user trust and saves businesses time and money.</li>
-          </ul>
-        `;
-      }
-
-      // Strengths & Weaknesses / Personality at work
-      if (q.includes('strength') || q.includes('weakness') || q.includes('kalakasan') || q.includes('kahinaan') || q.includes('greatest strength') || q.includes('work ethic')) {
-        return `
-          <p>⭐ <strong>Strengths &amp; Growth Areas:</strong></p>
-          <div class="space-y-1.5 text-slate-300">
-            <div>
-              <strong class="text-emerald-400">💪 Core Strengths:</strong>
-              <ul class="list-disc list-inside space-y-0.5 pt-0.5">
-                <li><strong>Attention to Detail:</strong> Mabusisi mag-test — checks input boundaries, negative numbers, and unexpected user clicks.</li>
-                <li><strong>Fast Learner:</strong> Rapidly picks up documentation, test tooling, and internal company workflows.</li>
-                <li><strong>Respectful Team Communication:</strong> Communicates defects objectively with clear reproduction steps without assigning blame.</li>
-              </ul>
-            </div>
-            <div>
-              <strong class="text-cyan-400">🌱 Growth Area / Weakness:</strong>
-              <p class="pt-0.5 text-slate-300">He is transparent that he is transitioning from purely manual testing into automated testing (Playwright & Postman). He compensates by practicing daily and seeking mentorship!</p>
-            </div>
-          </div>
-        `;
-      }
-
-      // Developer rejects bug / Works on my machine / Conflict resolution
-      if (q.includes('works on my machine') || q.includes('reject') || q.includes('not a bug') || q.includes('refuse') || q.includes('disagree') || q.includes('developer says') || q.includes('contest') || q.includes('conflict')) {
-        return `
-          <p>🛡️ <strong>If a developer rejects a bug or says <em>"It works on my machine"</em>:</strong></p>
-          <ul class="list-disc list-inside text-slate-300 space-y-1">
-            <li><strong>Objective Proof:</strong> Andrei provides an end-to-end screen recording, exact environment details (OS, browser build, viewport), and Chrome DevTools console/network logs.</li>
-            <li><strong>Cross-Check Specs:</strong> He re-checks the User Stories and Acceptance Criteria to confirm expected vs actual behavior.</li>
-            <li><strong>Collaboration over Blame:</strong> He approaches the dev with a team mindset — QA and Developers share the same mission: shipping reliable software to users.</li>
-          </ul>
-        `;
-      }
-
-      // Bug Prioritization / Triage / Severity vs Priority under pressure
-      if (q.includes('prioritize') || q.includes('priority') || q.includes('severity') || q.includes('triage') || q.includes('tight deadline') || q.includes('multiple bug') || q.includes('pressure') || q.includes('stress') || q.includes('tight')) {
-        return `
-          <p>⏱️ <strong>How Andrei Prioritizes Bugs (Triage by Severity &amp; Impact):</strong></p>
-          <ul class="list-disc list-inside text-slate-300 space-y-1">
-            <li>🚨 <strong>P0 / Blocker:</strong> System crashes, data corruption, calculation errors (e.g. discount bugs in POS), or authentication failures. Must be reported and tested immediately.</li>
-            <li>⚠️ <strong>P1 / Critical:</strong> Major features with broken workflows that lack simple workarounds.</li>
-            <li>ℹ️ <strong>P2 / Minor:</strong> Cosmetic flaws, visual alignment, or minor copy errors that can wait until core flows are stable.</li>
-          </ul>
-        `;
-      }
-
-      // Tricky bug / Challenging bug / Example bug
-      if (q.includes('tricky bug') || q.includes('challenging bug') || q.includes('example of a bug') || q.includes('bug you found') || q.includes('best bug') || q.includes('proud bug') || q.includes('challenge')) {
-        return `
-          <p>🐞 <strong>Examples of Tricky Bugs Andrei Has Caught:</strong></p>
-          <ul class="list-disc list-inside text-slate-300 space-y-1">
-            <li><strong>Fedelicious Wings POS:</strong> Identified an arithmetic boundary flaw where discount inputs could accept negative values, resulting in negative totals and corrupting sales ledgers. Also verified database transaction rollbacks on cancelled table orders.</li>
-            <li><strong>Barangay Safety Mobile App:</strong> Tested GPS geo-fencing to ensure incidents could not be pinned outside Lipa City boundaries, and validated photo upload size boundaries on mobile forms.</li>
-          </ul>
-        `;
-      }
-
-      // Overtime / Schedule Flexibility / OT
-      if (q.includes('overtime') || q.includes('ot') || q.includes('flexible') || q.includes('weekend') || q.includes('extend hour') || q.includes('adjust schedule')) {
-        return `
-          <p>⏰ <strong>Overtime &amp; Schedule Flexibility:</strong></p>
-          <p class="text-slate-300">Yes! Andrei is dedicated and willing to accommodate team sprint releases, critical bug verifications, or crunch periods when deployment deadlines require it.</p>
-        `;
-      }
-
-      // Career Goals / 3-5 Years / Future Plans
-      if (q.includes('goal') || q.includes('career') || q.includes('future') || q.includes('3 year') || q.includes('5 year') || q.includes('where do you see')) {
-        return `
-          <p>🎯 <strong>Career Vision (3 to 5 Years):</strong></p>
-          <ul class="list-disc list-inside text-slate-300 space-y-1">
-            <li><strong>Near Term (1–2 Years):</strong> Complete a stellar 486-hour QA Internship &rarr; Transition into a Junior QA Engineer with deep mastery of manual exploratory testing and Postman API automation.</li>
-            <li><strong>Long Term (3–5 Years):</strong> Grow into a full-fledged Software Development Engineer in Test (SDET) or QA Lead, designing end-to-end Playwright pipelines integrated into CI/CD workflows.</li>
-          </ul>
-        `;
-      }
-
-      // Hobbies / Personal interests / Free time / Outside of tech
-      if (q.includes('hobby') || q.includes('hobbies') || q.includes('interest') || q.includes('outside') || q.includes('free time') || q.includes('games') || q.includes('gaming') || q.includes('personality')) {
-        return `
-          <p>🎮 <strong>Outside of QA Testing (Personality &amp; Hobbies):</strong></p>
-          <ul class="list-disc list-inside text-slate-300 space-y-1">
-            <li>🔍 <strong>App Explorer:</strong> Loves downloading everyday apps and mentally noting UI/UX friction and responsiveness flaws.</li>
-            <li>🕹️ <strong>Gaming &amp; Strategy:</strong> Enjoys casual and strategy gaming — which fuels his puzzle-solving mindset and patience when tracking tricky bugs.</li>
-            <li>🗺️ <strong>Tech Roadmaps:</strong> Regularly follows industry roadmaps (JPCS DevRoutes member) to explore what's new in tech.</li>
-            <li>☕ <strong>Life in Batangas:</strong> Enjoys coffee breaks, spending quality time with family and friends in Talisay, and continuous personal growth.</li>
-          </ul>
-        `;
-      }
-
-      // Location / Relocation / Remote vs Onsite / Setup
-      if (q.includes('location') || q.includes('where') || q.includes('remote') || q.includes('onsite') || q.includes('hybrid') || q.includes('manila') || q.includes('batangas') || q.includes('lipa') || q.includes('talisay') || q.includes('setup') || q.includes('taguig') || q.includes('makati') || q.includes('bgc')) {
-        return `
-          <p>📍 <strong>Location &amp; Work Setup:</strong></p>
-          <ul class="space-y-1 text-slate-300">
-            <li>🏡 <strong>Home Base:</strong> Talisay, Batangas (studying at De La Salle Lipa).</li>
-            <li>🚗 <strong>Hybrid / Onsite Focus:</strong> Highly open and ready to report onsite or hybrid in <strong>Taguig / Makati (BGC / NCR)</strong> as well as Batangas areas.</li>
-            <li>💻 <strong>Remote Setup:</strong> Dedicated PC workstation with high-speed fiber internet and power backup readiness.</li>
-          </ul>
         `;
       }
 
