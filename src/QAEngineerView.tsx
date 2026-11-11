@@ -300,7 +300,7 @@ export default function QAEngineerView() {
                   </div>
                 </div>
                 <span className="self-start sm:self-auto px-3 py-1 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-500/40 text-xs font-mono font-bold">
-                  4TH YEAR (CLASS OF 2026)
+                  4TH YEAR (CLASS OF 2027)
                 </span>
               </div>
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
@@ -633,7 +633,7 @@ export default function QAEngineerView() {
             </div>
             <div className="space-y-2 text-slate-300">
               <div><strong className="text-emerald-400">Target Role:</strong> QA Engineering Intern / OJT (486 Practicum Hours)</div>
-              <div><strong className="text-cyan-400">Education:</strong> 4th Year BSIT (Specialization in Systems Development) at De La Salle Lipa (Class of 2026)</div>
+              <div><strong className="text-cyan-400">Education:</strong> 4th Year BSIT (Specialization in Systems Development) at De La Salle Lipa (Class of 2027)</div>
               <div><strong className="text-emerald-400">Email:</strong> johnandreiagustin12@gmail.com</div>
               <div><strong className="text-cyan-400">GitHub:</strong> github.com/Drei-Nitsu</div>
               <div><strong className="text-emerald-400">LinkedIn:</strong> linkedin.com/in/john-andrei-agustin-143b79386</div>
