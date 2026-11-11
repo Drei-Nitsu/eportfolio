@@ -1196,6 +1196,29 @@
     function generateAIResponse(userInput) {
       const q = userInput.toLowerCase();
 
+      // ── 1. Top HR Interview Question: Why Should We Hire You? ──
+      if (q.includes('why should we hire') || q.includes('why hire') || q.includes('why choose you') || q.includes('bakit ikaw') || q.includes('bakit ka namin') || q.includes('why should i hire') || q.includes('why accept') || q.includes('why you')) {
+        return `
+          <p>🌟 <strong>Why You Should Hire Andrei for QA:</strong></p>
+          <div class="space-y-1.5 text-slate-300">
+            <p>Andrei brings a unique combination of a <strong>Systems Development foundation</strong> and a <strong>detail-oriented QA mindset</strong>:</p>
+            <ul class="list-disc list-inside space-y-1">
+              <li><strong>Technical Depth Beyond Button-Clicking:</strong> Because he knows how to code (Node.js, Flutter, Python, SQL), he understands how backend APIs, databases, and logic actually fail.</li>
+              <li><strong>Hands-On Testing Experience:</strong> He has designed test cases, isolated boundary bugs, and tested edge cases in real academic applications (<em>Fedelicious Wings POS</em> and <em>Barangay Safety App</em>).</li>
+              <li><strong>High Commitment to 486 Hours:</strong> He treats this internship not just as a graduation requirement, but as an opportunity to deliver real value to your QA team while learning from senior engineers.</li>
+            </ul>
+          </div>
+          <div class="pt-1.5 flex flex-wrap gap-1.5">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=johnandreiagustin12@gmail.com&su=QA%20Internship%20Interview%20Invitation%20-%20John%20Andrei%20Agustin" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg bg-emerald-500 text-slate-950 font-bold text-[10px] code-font hover:bg-emerald-400 transition-colors inline-flex items-center gap-1 shadow-sm">
+              <i data-lucide="mail" class="w-3 h-3"></i> Schedule an Interview
+            </a>
+            <button onclick="copyEmailToClipboard(this)" class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 font-bold text-[10px] code-font hover:bg-slate-700 border border-slate-700 transition-colors">
+              📋 Copy Email
+            </button>
+          </div>
+        `;
+      }
+
       // Availability / Hiring / Intern / OJT
       if (q.includes('hire') || q.includes('role') || q.includes('intern') || q.includes('ojt') || q.includes('practicum') || q.includes('open') || q.includes('job') || q.includes('opportunity') || q.includes('available')) {
         return `
@@ -1419,15 +1442,46 @@
         `;
       }
 
-      // Handling Pressure / Disagreement / Conflict Resolution
-      if (q.includes('pressure') || q.includes('deadline') || q.includes('conflict') || q.includes('disagree') || q.includes('developer says') || q.includes('stress') || q.includes('tight')) {
+      // Developer rejects bug / Works on my machine / Conflict resolution
+      if (q.includes('works on my machine') || q.includes('reject') || q.includes('not a bug') || q.includes('refuse') || q.includes('disagree') || q.includes('developer says') || q.includes('contest') || q.includes('conflict')) {
         return `
-          <p>🤝 <strong>Handling Pressure &amp; Team Collaboration:</strong></p>
+          <p>🛡️ <strong>If a developer rejects a bug or says <em>"It works on my machine"</em>:</strong></p>
           <ul class="list-disc list-inside text-slate-300 space-y-1">
-            <li><strong>When developers contest a bug:</strong> Andrei stays objective. He provides video recordings, Chrome DevTools console logs, and step-by-step reproduction steps so the bug is indisputable.</li>
-            <li><strong>Under tight sprint deadlines:</strong> He prioritizes testing by severity — focusing on critical user journeys (P0/P1: authentication, forms, data integrity) before minor cosmetic issues.</li>
-            <li><strong>Mindset:</strong> QA and Developers are on the same team — the shared goal is shipping a reliable product!</li>
+            <li><strong>Objective Proof:</strong> Andrei provides an end-to-end screen recording, exact environment details (OS, browser build, viewport), and Chrome DevTools console/network logs.</li>
+            <li><strong>Cross-Check Specs:</strong> He re-checks the User Stories and Acceptance Criteria to confirm expected vs actual behavior.</li>
+            <li><strong>Collaboration over Blame:</strong> He approaches the dev with a team mindset — QA and Developers share the same mission: shipping reliable software to users.</li>
           </ul>
+        `;
+      }
+
+      // Bug Prioritization / Triage / Severity vs Priority under pressure
+      if (q.includes('prioritize') || q.includes('priority') || q.includes('severity') || q.includes('triage') || q.includes('tight deadline') || q.includes('multiple bug') || q.includes('pressure') || q.includes('stress') || q.includes('tight')) {
+        return `
+          <p>⏱️ <strong>How Andrei Prioritizes Bugs (Triage by Severity &amp; Impact):</strong></p>
+          <ul class="list-disc list-inside text-slate-300 space-y-1">
+            <li>🚨 <strong>P0 / Blocker:</strong> System crashes, data corruption, calculation errors (e.g. discount bugs in POS), or authentication failures. Must be reported and tested immediately.</li>
+            <li>⚠️ <strong>P1 / Critical:</strong> Major features with broken workflows that lack simple workarounds.</li>
+            <li>ℹ️ <strong>P2 / Minor:</strong> Cosmetic flaws, visual alignment, or minor copy errors that can wait until core flows are stable.</li>
+          </ul>
+        `;
+      }
+
+      // Tricky bug / Challenging bug / Example bug
+      if (q.includes('tricky bug') || q.includes('challenging bug') || q.includes('example of a bug') || q.includes('bug you found') || q.includes('best bug') || q.includes('proud bug') || q.includes('challenge')) {
+        return `
+          <p>🐞 <strong>Examples of Tricky Bugs Andrei Has Caught:</strong></p>
+          <ul class="list-disc list-inside text-slate-300 space-y-1">
+            <li><strong>Fedelicious Wings POS:</strong> Identified an arithmetic boundary flaw where discount inputs could accept negative values, resulting in negative totals and corrupting sales ledgers. Also verified database transaction rollbacks on cancelled table orders.</li>
+            <li><strong>Barangay Safety Mobile App:</strong> Tested GPS geo-fencing to ensure incidents could not be pinned outside Lipa City boundaries, and validated photo upload size boundaries on mobile forms.</li>
+          </ul>
+        `;
+      }
+
+      // Overtime / Schedule Flexibility / OT
+      if (q.includes('overtime') || q.includes('ot') || q.includes('flexible') || q.includes('weekend') || q.includes('extend hour') || q.includes('adjust schedule')) {
+        return `
+          <p>⏰ <strong>Overtime &amp; Schedule Flexibility:</strong></p>
+          <p class="text-slate-300">Yes! Andrei is dedicated and willing to accommodate team sprint releases, critical bug verifications, or crunch periods when deployment deadlines require it.</p>
         `;
       }
 
