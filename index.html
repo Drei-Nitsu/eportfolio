@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>John Andrei Garcia Agustin | Aspiring QA Engineer & 4th Year BSIT</title>
+  <meta name="description" content="Portfolio of John Andrei Garcia Agustin (Drei) - 4th Year BSIT Student at De La Salle Lipa & Aspiring QA Engineer specializing in Manual Testing, Test Case Design, and Learning Test Automation." />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2310b981' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='18' height='18' x='3' y='3' rx='2'/%3E%3Cpath d='m9 10 2 2-2 2'/%3E%3Cpath d='M13 14h2'/%3E%3C/svg%3E" />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#070b13',
+              card: '#0f172a',
+              cardHover: '#1e293b',
+              emerald: '#10b981',
+              cyan: '#06b6d4',
+              crimson: '#ef4444',
+              amber: '#f59e0b'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      background-color: #070b13;
+      color: #f1f5f9;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      overflow-x: hidden;
+    }
+    .code-font {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .glass-card {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .glass-card:hover {
+      border-color: rgba(16, 185, 129, 0.4);
+      transform: translateY(-2px);
+    }
+    .grid-bg {
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+    /* Moving Floating Animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(4deg); }
+    }
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-16px) rotate(-6deg); }
+    }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.35; transform: scale(1); }
+      50% { opacity: 0.65; transform: scale(1.08); }
+    }
+    @keyframes radarSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .animate-float {
+      animation: float 4s ease-in-out infinite;
+    }
+    .animate-float-slow {
+      animation: floatSlow 7s ease-in-out infinite;
+    }
+    .pulse-glow {
+      animation: pulseGlow 5s ease-in-out infinite;
+    }
+    /* Interactive Icon Physics */
+    .icon-bounce {
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .group:hover .icon-bounce,
+    .icon-bounce:hover {
+      transform: translateY(-5px) scale(1.22) rotate(8deg);
+      filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.5));
+    }
+    /* Eportfolio Skill Pill Badge (Matching Education Card) */
+    .skill-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.375rem 0.65rem;
+      border-radius: 0.5rem;
+      background: rgba(30, 41, 59, 0.7); /* slate-800 */
+      border: 1px solid rgba(51, 65, 85, 0.85); /* slate-700 */
+      color: #cbd5e1;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 500;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: default;
+      user-select: none;
+    }
+    .skill-pill:hover {
+      border-color: rgba(16, 185, 129, 0.55);
+      background: rgba(16, 185, 129, 0.12);
+      color: #6ee7b7;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.18);
+    }
+    .skill-pill-emerald {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.375rem 0.65rem;
+      border-radius: 0.5rem;
+      background: rgba(16, 185, 129, 0.14);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #6ee7b7;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 600;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: default;
+      user-select: none;
+    }
+    .skill-pill-emerald:hover {
+      border-color: rgba(52, 211, 153, 0.75);
+      background: rgba(16, 185, 129, 0.22);
+      color: #a7f3d0;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
+    }
+  </style>
+</head>
+<body class="selection:bg-emerald-500 selection:text-slate-950 min-h-screen relative grid-bg">
+
+  <!-- Floating QA Elements in Background -->
+  <div class="fixed top-24 left-10 text-emerald-500/20 pointer-events-none animate-float hidden lg:block -z-10">
+    <i data-lucide="shield-check" class="w-14 h-14"></i>
+  </div>
+  <div class="fixed top-1/2 right-12 text-cyan-500/20 pointer-events-none animate-float-slow hidden lg:block -z-10">
+    <i data-lucide="bug" class="w-16 h-16"></i>
+  </div>
+  <div class="fixed bottom-28 left-16 text-amber-500/20 pointer-events-none animate-float hidden lg:block -z-10" style="animation-delay: 2s;">
+    <i data-lucide="database" class="w-12 h-12"></i>
+  </div>
+
+  <!-- Ambient Glow Elements -->
+  <div class="fixed top-0 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none -z-10 pulse-glow"></div>
+  <div class="fixed bottom-1/4 right-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none -z-10 pulse-glow" style="animation-delay: 3s;"></div>
+
+  <!-- ── Navigation Bar ───────────────────────────────── -->
+  <nav class="sticky top-0 z-40 bg-[#070b13]/85 backdrop-blur-md border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2.5 group">
+        <div class="w-9 h-9 rounded-xl bg-slate-900 border border-emerald-500/40 flex items-center justify-center text-emerald-400 font-mono font-extrabold text-sm shadow-[0_0_12px_rgba(16,185,129,0.2)] group-hover:border-emerald-400 group-hover:shadow-[0_0_16px_rgba(16,185,129,0.4)] group-hover:scale-105 transition-all">
+          JA
+        </div>
+        <span class="text-base font-extrabold font-mono text-white tracking-tight group-hover:text-emerald-400 transition-colors">
+          JA<span class="text-emerald-400">.qa</span>
+        </span>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-300">
+        <a href="#about" class="hover:text-emerald-400 transition-colors">About</a>
+        <a href="#projects" class="hover:text-emerald-400 transition-colors">Projects</a>
+        <a href="#skills" class="hover:text-emerald-400 transition-colors">Skills</a>
+        <a href="#education" class="hover:text-emerald-400 transition-colors">Education</a>
+        <a href="#certifications" class="hover:text-emerald-400 transition-colors">Certificates</a>
+      </div>
+
+      <!-- Action Button -->
+      <div class="flex items-center gap-3">
+        <a href="https://github.com/Drei-Nitsu" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-emerald-500/50 text-slate-300 hover:text-white text-xs code-font transition-all group" title="Visit Andrei's GitHub">
+          <img src="./github-icon.png" alt="GitHub" class="w-3.5 h-3.5 rounded-full object-contain group-hover:scale-110 transition-transform">
+          <span>GitHub</span>
+        </a>
+        <a href="https://linkedin.com/in/john-andrei-agustin-143b79386" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-cyan-500/50 text-slate-300 hover:text-white text-xs code-font transition-all group" title="Visit Andrei's LinkedIn">
+          <img src="./linkedin-icon.png" alt="LinkedIn" class="w-3.5 h-3.5 rounded-sm object-contain group-hover:scale-110 transition-transform">
+          <span>LinkedIn</span>
+        </a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=johnandreiagustin12@gmail.com&su=QA%20Internship%20Inquiry%20-%20John%20Andrei%20Agustin" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-emerald-500 text-slate-950 font-semibold text-xs hover:bg-emerald-400 transition-all shadow-md shadow-emerald-500/20 group">
+          <i data-lucide="mail" class="w-3.5 h-3.5 icon-bounce"></i>
+          <span>Connect for QA Internship</span>
+        </a>
+        <button id="mobileMenuBtn" class="lg:hidden p-2 text-slate-400 hover:text-white" aria-label="Toggle menu">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Nav Menu -->
+    <div id="mobileMenu" class="hidden lg:hidden border-b border-slate-800 bg-[#0f172a] px-4 py-4 space-y-3 text-sm">
+      <a href="#about" class="block text-slate-300 hover:text-emerald-400">About Me</a>
+      <a href="#projects" class="block text-slate-300 hover:text-emerald-400">Tested Projects</a>
+      <a href="#skills" class="block text-slate-300 hover:text-emerald-400">Skills & Roadmap</a>
+      <a href="#education" class="block text-slate-300 hover:text-emerald-400">Education (De La Salle Lipa)</a>
+      <a href="#certifications" class="block text-slate-300 hover:text-emerald-400">Certificates</a>
+      <a href="https://github.com/Drei-Nitsu" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-slate-300 hover:text-emerald-400">
+        <img src="./github-icon.png" alt="GitHub" class="w-4 h-4 rounded-full object-contain">
+        <span>GitHub Profile (@Drei-Nitsu)</span>
+      </a>
+      <a href="https://linkedin.com/in/john-andrei-agustin-143b79386" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-slate-300 hover:text-cyan-400">
+        <img src="./linkedin-icon.png" alt="LinkedIn" class="w-4 h-4 rounded-sm object-contain">
+        <span>LinkedIn Profile</span>
+      </a>
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=johnandreiagustin12@gmail.com&su=QA%20Internship%20Inquiry%20-%20John%20Andrei%20Agustin" target="_blank" rel="noopener noreferrer" class="block text-emerald-400 font-semibold hover:underline">✉️ Email Andrei (Gmail)</a>
+    </div>
+  </nav>
+
+  <!-- ── Hero Section ─────────────────────────────────── -->
+  <section class="relative pt-12 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Left Column: Student Bio & Identity -->
+      <div class="lg:col-span-7 space-y-6">
+        
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-xs code-font text-emerald-400">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="font-semibold tracking-wide">SEEKING QA INTERNSHIP / OJT · 486 HRS</span>
+        </div>
+
+        <div class="space-y-2">
+          <p class="text-slate-400 text-base font-medium">Kumusta! I am</p>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
+            John Andrei <br class="hidden sm:inline" />
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">Garcia Agustin</span>
+          </h1>
+          <p class="text-lg text-slate-300 font-normal pt-2">
+            Quality Assurance & Software Testing Advocate
+          </p>
+        </div>
+
+        <p class="text-slate-400 text-base leading-relaxed max-w-2xl">
+          Graduating BSIT student specializing in <span class="text-slate-200 font-semibold">Systems Development</span> with a developer's perspective and a QA's curiosity. Having built web and mobile applications during college, I understand how software is assembled from the inside out—and where defects hide. I specialize in <span class="text-emerald-400 font-medium">manual test case design</span>, <span class="text-emerald-400 font-medium">exploratory bug hunting</span>, and <span class="text-cyan-400 font-medium">defect documentation</span>, while actively learning test automation with <span class="text-amber-400 font-medium">Playwright</span> and <span class="text-amber-400 font-medium">Postman</span>.
+        </p>
+
+        <!-- CTA Buttons with Micro-Interactions -->
+        <div class="flex flex-wrap items-center gap-3 pt-2">
+          <a href="#projects" class="group inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-slate-950 font-bold text-sm shadow-lg shadow-emerald-500/25 transition-all transform hover:-translate-y-1">
+            <i data-lucide="folder-git-2" class="w-4 h-4 icon-bounce"></i>
+            <span>View Tested Projects</span>
+          </a>
+          <a href="./John-Andrei-Agustin-CV.pdf" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-slate-500 text-slate-200 hover:text-white font-semibold text-sm transition-all transform hover:-translate-y-1">
+            <i data-lucide="file-text" class="w-4 h-4 icon-bounce"></i>
+            <span>View / Download CV</span>
+          </a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=johnandreiagustin12@gmail.com&su=QA%20Internship%20Inquiry%20-%20John%20Andrei%20Agustin" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-slate-500 text-slate-200 font-semibold text-sm transition-all transform hover:-translate-y-1">
+            <i data-lucide="mail" class="w-4 h-4 text-slate-400 group-hover:text-emerald-400 icon-bounce"></i>
+            <span>Get in Touch</span>
+          </a>
+          <button onclick="copyEmailToClipboard(this)" class="group p-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-400 hover:text-white transition-all transform hover:-translate-y-1" title="Copy Email to Clipboard">
+            <i data-lucide="copy" class="w-5 h-5 icon-bounce"></i>
+          </button>
+        </div>
+
+        <!-- Quick Stats Pill (Interactive Hover) -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 max-w-xl">
+          <div class="glass-card rounded-xl p-3 text-center group cursor-default">
+            <div class="text-xl font-bold text-white code-font group-hover:text-emerald-400 transition-colors">4th Year</div>
+            <div class="text-xs text-slate-400">De La Salle Lipa</div>
+          </div>
+          <div class="glass-card rounded-xl p-3 text-center group cursor-default border-emerald-500/30 bg-emerald-950/20">
+            <div class="text-xl font-bold text-emerald-400 code-font group-hover:scale-105 transition-transform">486 Hours</div>
+            <div class="text-xs text-slate-400">OJT Required</div>
+          </div>
+          <div class="glass-card rounded-xl p-3 text-center group cursor-default">
+            <div class="text-xl font-bold text-teal-300 code-font group-hover:scale-105 transition-transform">Manual QA</div>
+            <div class="text-xs text-slate-400">Core Strength</div>
+          </div>
+          <div class="glass-card rounded-xl p-3 text-center group cursor-default">
+            <div class="text-xl font-bold text-cyan-400 code-font group-hover:scale-105 transition-transform">Upskilling</div>
+            <div class="text-xs text-slate-400">Playwright & Postman</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Profile Photo & Student Badge -->
+      <div class="lg:col-span-5 flex justify-center">
+        <div class="relative group">
+          <!-- Ambient Border Glow -->
+          <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-emerald-500 via-cyan-500 to-emerald-600 opacity-40 blur-xl group-hover:opacity-75 transition duration-500"></div>
+          
+          <div class="relative glass-card rounded-2xl p-4 border border-slate-700/80 max-w-sm">
+            <div class="relative overflow-hidden rounded-xl bg-slate-800/80 aspect-square flex items-center justify-center">
+              <img src="./profile.png" alt="John Andrei Garcia Agustin" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+              
+              <!-- Floating Badge -->
+              <div class="absolute bottom-3 left-3 right-3 glass-card rounded-lg p-2.5 border border-slate-700/80 bg-slate-950/80 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <img src="./dlsl.png" alt="DLSL" class="w-6 h-6 object-contain" onerror="this.style.display='none'">
+                  <div>
+                    <div class="text-xs font-semibold text-white">De La Salle Lipa</div>
+                    <div class="text-[10px] text-slate-400">BSIT · Specialization in Systems Development</div>
+                  </div>
+                </div>
+                <span class="text-[10px] code-font font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">CLASS 2026</span>
+              </div>
+            </div>
+
+            <!-- Terminal Quote Snippet -->
+            <div class="mt-4 p-3 rounded-lg bg-slate-950/70 border border-slate-800 code-font text-xs text-slate-300 space-y-1">
+              <div class="flex items-center justify-between text-slate-500 text-[10px]">
+                <span>andrei-profile.ts</span>
+                <span class="text-emerald-400 flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                  READY TO TEST
+                </span>
+              </div>
+              <p class="text-slate-400 text-[11px] pt-1">
+                <span class="text-cyan-400 font-semibold">const</span> Andrei = {
+                  role: <span class="text-emerald-300">'Aspiring QA'</span>,
+                  strengths: [<span class="text-emerald-300">'Manual Testing'</span>, <span class="text-emerald-300">'Edge Cases'</span>],
+                  currentlyLearning: <span class="text-amber-300">'Playwright & Postman'</span>
+                };
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+
+  <!-- ── Interactive Projects Section with Filter ──────── -->
+  <section id="projects" class="py-16 bg-slate-950/60 border-t border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="max-w-3xl mx-auto text-center space-y-3 mb-8">
+        <span class="text-xs code-font text-emerald-400 uppercase tracking-widest">Hands-On Experience</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Academic Projects & QA Verification</h2>
+        <p class="text-slate-400 text-sm">Real-world applications built during college and verified through manual and functional testing.</p>
+        <div class="w-16 h-1 bg-emerald-500 mx-auto rounded-full"></div>
+      </div>
+
+      <!-- Project Filter Pills (Interactive) -->
+      <div class="flex flex-wrap items-center justify-center gap-2 mb-10">
+        <button class="filter-btn px-4 py-1.5 rounded-full bg-emerald-500 text-slate-950 text-xs font-bold code-font transition-all" onclick="filterProjects('all', this)">
+          All Projects (2)
+        </button>
+        <button class="filter-btn px-4 py-1.5 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold code-font transition-all" onclick="filterProjects('pos', this)">
+          Fedelicious POS
+        </button>
+        <button class="filter-btn px-4 py-1.5 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold code-font transition-all" onclick="filterProjects('mobile', this)">
+          Barangay Safety App (Flutter)
+        </button>
+      </div>
+
+      <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Project 1: Fedelicious Wings POS -->
+        <div class="project-item pos glass-card rounded-2xl border border-slate-800 overflow-hidden flex flex-col group hover:border-emerald-500/40 transition-all">
+          <div class="relative h-48 bg-slate-900/90 border-b border-slate-800 flex items-center justify-center p-4">
+            <img src="./fedelicous.png.png" alt="Fedelicious Wings POS" class="max-h-36 w-auto object-contain rounded-xl group-hover:scale-105 transition-transform duration-300" onerror="this.src='./profile.png'">
+            <div class="absolute bottom-2.5 left-3.5 right-3.5 flex items-center justify-between pointer-events-none">
+              <span class="px-2 py-0.5 rounded-md bg-emerald-500/90 text-slate-950 text-[10px] font-bold code-font">
+                WEB POS PROTOTYPE
+              </span>
+              <span class="text-[10px] code-font text-slate-300 bg-slate-950/80 px-2 py-0.5 rounded border border-slate-700">
+                Node.js · MySQL
+              </span>
+            </div>
+          </div>
+
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">
+                Fedelicious Wings POS System
+              </h3>
+              <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
+                A web-based POS prototype designed to modernize small restaurant paper-based operations. Automates order entry, calculates itemized totals & discounts, generates receipts, and reduces order turnaround errors.
+              </p>
+            </div>
+
+            <!-- Manual QA Focus -->
+            <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
+              <span class="text-[11px] font-bold text-emerald-400 code-font flex items-center gap-1.5">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5 icon-bounce"></i>
+                <span>Manual Testing Highlights:</span>
+              </span>
+              <ul class="text-xs text-slate-300 space-y-1 list-disc list-inside">
+                <li><strong>Calculation Accuracy:</strong> Tested discount logic and edge cases (preventing negative totals on invalid discount input).</li>
+                <li><strong>Order Workflow:</strong> Verified state transitions from draft order to completed receipt confirmation.</li>
+                <li><strong>Data Integrity:</strong> Verified in MySQL that cancelled transactions rolled back without orphan records.</li>
+              </ul>
+            </div>
+
+            <div class="flex flex-wrap gap-1.5 pt-2">
+              <span class="px-2.5 py-1 rounded text-[11px] code-font bg-slate-800 text-slate-300">Manual QA</span>
+              <span class="px-2.5 py-1 rounded text-[11px] code-font bg-slate-800 text-slate-300">Node.js</span>
+              <span class="px-2.5 py-1 rounded text-[11px] code-font bg-slate-800 text-slate-300">Express</span>
+              <span class="px-2.5 py-1 rounded text-[11px] code-font bg-slate-800 text-slate-300">MySQL</span>
+              <span class="px-2.5 py-1 rounded text-[11px] code-font bg-slate-800 text-slate-300">Boundary Checks</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2: Barangay Safety App -->
+        <div class="project-item mobile glass-card rounded-2xl border border-slate-800 overflow-hidden flex flex-col group hover:border-cyan-500/40 transition-all">
+          <div class="relative h-48 bg-slate-900/90 border-b border-slate-800 flex items-center justify-center p-4">
+            <img src="./barangay.png.png" alt="Barangay Safety Incident Reporting App" class="max-h-36 w-auto object-contain rounded-xl group-hover:scale-105 transition-transform duration-300" onerror="this.src='./profile.png'">
+            <div class="absolute bottom-2.5 left-3.5 right-3.5 flex items-center justify-between pointer-events-none">
+              <span class="px-2 py-0.5 rounded-md bg-cyan-500/90 text-slate-950 text-[10px] font-bold code-font">
+                MOBILE & GIS REPORTING
+              </span>
+              <span class="text-[10px] code-font text-slate-300 bg-slate-950/80 px-2 py-0.5 rounded border border-slate-700">
+                Flutter · Supabase
+              </span>
+            </div>
+          </div>
+
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">
+                Barangay Safety Incident Reporting App
+              </h3>
+              <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
+                A cross-platform mobile application modernizing incident reporting in Lipa City. Features GPS geo-tagging, interactive map dashboards, and Role-Based Access Control (RBAC) to support local authorities in data-driven safety management.
+              </p>
+            </div>
+
+            <!-- Manual QA Focus -->
+            <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
+              <span class="text-[11px] font-bold text-cyan-400 code-font flex items-center gap-1.5">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5 icon-bounce"></i>
+                <span>Manual Testing Highlights:</span>
+              </span>
+              <ul class="text-xs text-slate-300 space-y-1 list-disc list-inside">
+                <li><strong>GPS Boundary Testing:</strong> Verified that incident markers accurately pin inside Lipa City boundaries.</li>
+                <li><strong>Mobile Form Validation:</strong> Tested mandatory fields, photo upload size limits, and invalid description handling.</li>
+                <li><strong>Role Permissions:</strong> Verified that regular Citizen accounts cannot access Admin resolution controls.</li>
+              </ul>
+            </div>
+
+            <div class="flex flex-wrap gap-1.5 pt-2">
+              <span class="px-2.5 py-1 rounded text-[11px] code-font bg-slate-800 text-slate-300">Flutter</span>
+              <span class="px-2.5 py-1 rounded text-[11px] code-font bg-slate-800 text-slate-300">PostgreSQL</span>
+              <span class="px-2.5 py-1 rounded text-[11px] code-font bg-slate-800 text-slate-300">Supabase</span>
+              <span class="px-2.5 py-1 rounded text-[11px] code-font bg-slate-800 text-slate-300">Mobile QA</span>
+              <span class="px-2.5 py-1 rounded text-[11px] code-font bg-slate-800 text-slate-300">RBAC Testing</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Skills & Competencies (CV-Aligned) ───────────── -->
+  <section id="skills" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto text-center space-y-3 mb-12">
+      <span class="text-xs code-font text-emerald-400 uppercase tracking-widest">Capabilities &amp; CV Profile</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Skills &amp; Competencies</h2>
+      <p class="text-slate-400 text-sm max-w-xl mx-auto">
+        Structured directly from my official CV — combining dedicated Quality Assurance methodologies with practical system development stacks.
+      </p>
+      <div class="w-16 h-1 bg-emerald-500 mx-auto rounded-full"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Card 1: QA & Software Testing (Primary Focus) -->
+      <div class="glass-card rounded-2xl p-6 border border-emerald-500/40 hover:border-emerald-500/70 space-y-4 group relative overflow-hidden flex flex-col justify-between">
+        <div class="absolute -top-12 -right-12 w-28 h-28 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none"></div>
+        <div class="space-y-4">
+          <div class="flex items-center justify-between gap-2">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                <i data-lucide="shield-check" class="w-5 h-5 icon-bounce"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-white text-base group-hover:text-emerald-400 transition-colors">QA &amp; Software Testing</h3>
+                <span class="text-[11px] code-font text-emerald-400 font-semibold">Primary OJT Strength</span>
+              </div>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Core testing competencies for defect isolation, test documentation, and validation across SDLC and STLC phases.
+          </p>
+          <div class="flex flex-wrap gap-2 pt-1">
+            <span class="skill-pill-emerald"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Manual Testing</span>
+            <span class="skill-pill-emerald"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Test Case Design</span>
+            <span class="skill-pill-emerald"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Test Planning</span>
+            <span class="skill-pill-emerald"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Bug Reporting &amp; Tracking</span>
+            <span class="skill-pill-emerald"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Functional &amp; Regression</span>
+            <span class="skill-pill-emerald"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>API Testing</span>
+            <span class="skill-pill-emerald"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Edge Case Validation</span>
+            <span class="skill-pill-emerald"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>SDLC &amp; STLC</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Testing & Diagnostic Tools -->
+      <div class="glass-card rounded-2xl p-6 border border-slate-800 hover:border-cyan-500/40 space-y-4 group relative overflow-hidden flex flex-col justify-between">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between gap-2">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+                <i data-lucide="wrench" class="w-5 h-5 icon-bounce"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-white text-base group-hover:text-cyan-400 transition-colors">Testing &amp; Diagnostics</h3>
+                <span class="text-[11px] code-font text-cyan-400 font-semibold">Defect Tools</span>
+              </div>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Essential developer tools and platforms used for inspecting payloads, diagnosing errors, and managing code repositories.
+          </p>
+          <div class="flex flex-wrap gap-2 pt-1">
+            <span class="skill-pill"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>Postman</span>
+            <span class="skill-pill"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>Chrome DevTools</span>
+            <span class="skill-pill"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>Git</span>
+            <span class="skill-pill"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>GitHub</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Backend & Database Integrity -->
+      <div class="glass-card rounded-2xl p-6 border border-slate-800 hover:border-emerald-500/40 space-y-4 group relative overflow-hidden flex flex-col justify-between">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between gap-2">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                <i data-lucide="database" class="w-5 h-5 icon-bounce"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-white text-base group-hover:text-emerald-400 transition-colors">Databases &amp; Backend</h3>
+                <span class="text-[11px] code-font text-emerald-400 font-semibold">Data Verification</span>
+              </div>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Database environments and backend services verified for transactional integrity and secure schema constraints.
+          </p>
+          <div class="flex flex-wrap gap-2 pt-1">
+            <span class="skill-pill"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>PostgreSQL</span>
+            <span class="skill-pill"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>MySQL</span>
+            <span class="skill-pill"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Supabase</span>
+            <span class="skill-pill"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Node.js</span>
+            <span class="skill-pill"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Express.js</span>
+            <span class="skill-pill"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>SQL Querying</span>
+            <span class="skill-pill"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Data Integrity</span>
+            <span class="skill-pill"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>RLS Security</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Web & Mobile Stacks Tested -->
+      <div class="glass-card rounded-2xl p-6 border border-slate-800 hover:border-cyan-500/40 space-y-4 group relative overflow-hidden flex flex-col justify-between">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between gap-2">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+                <i data-lucide="smartphone" class="w-5 h-5 icon-bounce"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-white text-base group-hover:text-cyan-400 transition-colors">Web &amp; Mobile Stacks</h3>
+                <span class="text-[11px] code-font text-cyan-400 font-semibold">Tested Frameworks</span>
+              </div>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Frontend and cross-platform UI architectures evaluated for responsive layout rendering and input edge cases.
+          </p>
+          <div class="flex flex-wrap gap-2 pt-1">
+            <span class="skill-pill"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>React</span>
+            <span class="skill-pill"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>Next.js</span>
+            <span class="skill-pill"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>Flutter</span>
+            <span class="skill-pill"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>React Native</span>
+            <span class="skill-pill"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>Tailwind CSS</span>
+            <span class="skill-pill"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>Bootstrap</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: Programming Languages & Foundations -->
+      <div class="glass-card rounded-2xl p-6 border border-slate-800 hover:border-amber-500/40 space-y-4 group relative overflow-hidden flex flex-col justify-between">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between gap-2">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
+                <i data-lucide="code-2" class="w-5 h-5 icon-bounce"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-white text-base group-hover:text-amber-400 transition-colors">Languages &amp; Core Code</h3>
+                <span class="text-[11px] code-font text-amber-400 font-semibold">BSIT Foundations</span>
+              </div>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Academic and industry-certified language foundations in algorithmic logic, data querying, and scripting.
+          </p>
+          <div class="flex flex-wrap gap-2 pt-1">
+            <span class="skill-pill"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>Python (Cisco Certified)</span>
+            <span class="skill-pill"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>JavaScript</span>
+            <span class="skill-pill"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>C++</span>
+            <span class="skill-pill"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>SQL</span>
+            <span class="skill-pill"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>HTML5</span>
+            <span class="skill-pill"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>CSS3</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6: AI Productivity & Professional Soft Skills -->
+      <div class="glass-card rounded-2xl p-6 border border-slate-800 hover:border-purple-500/40 space-y-4 group relative overflow-hidden flex flex-col justify-between">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between gap-2">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400">
+                <i data-lucide="sparkles" class="w-5 h-5 icon-bounce"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-white text-base group-hover:text-purple-400 transition-colors">AI &amp; Workplace Skills</h3>
+                <span class="text-[11px] code-font text-purple-400 font-semibold">Productivity &amp; Team</span>
+              </div>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Modern AI tooling used for scenario building, combined with essential teamwork and problem-solving mindset.
+          </p>
+          <div class="flex flex-wrap gap-2 pt-1">
+            <span class="skill-pill"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>ChatGPT &amp; Claude</span>
+            <span class="skill-pill"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Copilot &amp; Gemini</span>
+            <span class="skill-pill"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Attention to Detail</span>
+            <span class="skill-pill"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Analytical Thinking</span>
+            <span class="skill-pill"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Problem Solving</span>
+            <span class="skill-pill"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Team Collaboration</span>
+            <span class="skill-pill"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Tagalog &amp; English</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Academic Background (Education) ─────────────── -->
+  <section id="education" class="py-16 bg-slate-950/40 border-t border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center space-y-3 mb-12">
+        <span class="text-xs code-font text-emerald-400 uppercase tracking-widest">Academic Foundations</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Education History</h2>
+        <div class="w-16 h-1 bg-emerald-500 mx-auto rounded-full"></div>
+      </div>
+
+      <div class="max-w-4xl mx-auto">
+        
+        <!-- De La Salle Lipa -->
+        <div class="glass-card rounded-2xl p-6 sm:p-8 border border-emerald-500/30 hover:border-emerald-500/60 transition-all flex flex-col sm:flex-row items-start sm:items-center gap-6 group relative overflow-hidden shadow-xl">
+          <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white/10 p-2.5 flex items-center justify-center shrink-0 border border-slate-700 group-hover:scale-105 transition-transform">
+            <img src="./dlsl.png" alt="De La Salle Lipa logo" class="w-full h-full object-contain" onerror="this.src='./dlsl.png'">
+          </div>
+          <div class="flex-1 space-y-2">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div>
+                <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-emerald-400 transition-colors">De La Salle Lipa</h3>
+                <p class="text-emerald-300 font-medium text-sm sm:text-base">Bachelor of Science in Information Technology (BSIT) · <span class="text-white font-semibold">Specialization in Systems Development</span></p>
+              </div>
+              <span class="px-3.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-semibold border border-emerald-500/30 code-font">
+                2023 – Present · 4th Year
+              </span>
+            </div>
+            <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
+              Specialized in Systems Development with coursework in Software Quality Assurance, Testing Methodologies, Database Management Systems, Web & Mobile Development, and Information Systems Architecture.
+            </p>
+            <div class="pt-2 flex flex-wrap gap-2 text-xs">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 font-bold code-font">
+                <i data-lucide="clock" class="w-3.5 h-3.5 text-emerald-400"></i>
+                Practicum / OJT Requirement: 486 Hours
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-slate-300 code-font">
+                <i data-lucide="calendar" class="w-3.5 h-3.5 text-cyan-400"></i>
+                Graduating Class of 2026
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-slate-300 code-font">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-emerald-400"></i>
+                Lipa City, Batangas
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Certifications & Credentials ────────────────── -->
+  <section id="certifications" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto text-center space-y-3 mb-12">
+      <span class="text-xs code-font text-emerald-400 uppercase tracking-widest">Verified Learning</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Certifications & Accreditations</h2>
+      <p class="text-slate-400 text-sm">Click on any certificate to view high-resolution credential</p>
+      <div class="w-16 h-1 bg-emerald-500 mx-auto rounded-full"></div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- Cert 1: DevRoutes -->
+      <div class="cert-item glass-card rounded-2xl border border-slate-800 overflow-hidden cursor-pointer group hover:border-emerald-500/50 transition-all" onclick="openCertModal('./Devroutes.png', 'DevRoutes: Learning How to Learn with Roadmaps', 'JPCS – De La Salle Chapter')">
+        <div class="h-44 bg-slate-900 overflow-hidden relative">
+          <img src="./Devroutes.png" alt="DevRoutes Certificate" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='./dlsl.png'">
+          <div class="absolute inset-0 bg-slate-950/20 group-hover:bg-transparent transition-colors"></div>
+        </div>
+        <div class="p-4 space-y-1">
+          <span class="text-[11px] code-font text-emerald-400 font-semibold">JPCS – De La Salle Chapter</span>
+          <h4 class="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors">DevRoutes: Learning Roadmaps</h4>
+          <span class="text-xs text-slate-400 block">January 29, 2026</span>
+        </div>
+      </div>
+
+      <!-- Cert 2: Skills to Succeed -->
+      <div class="cert-item glass-card rounded-2xl border border-slate-800 overflow-hidden cursor-pointer group hover:border-emerald-500/50 transition-all" onclick="openCertModal('./Skills2Succeed.png', 'Skills to Succeed Academy', 'Accenture')">
+        <div class="h-44 bg-slate-900 overflow-hidden relative">
+          <img src="./Skills2Succeed.png" alt="Skills to Succeed Certificate" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='./dlsl.png'">
+          <div class="absolute inset-0 bg-slate-950/20 group-hover:bg-transparent transition-colors"></div>
+        </div>
+        <div class="p-4 space-y-1">
+          <span class="text-[11px] code-font text-emerald-400 font-semibold">Accenture</span>
+          <h4 class="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors">Skills to Succeed Academy</h4>
+          <span class="text-xs text-slate-400 block">March 4, 2026</span>
+        </div>
+      </div>
+
+      <!-- Cert 3: Python Essentials 1 -->
+      <div class="cert-item glass-card rounded-2xl border border-slate-800 overflow-hidden cursor-pointer group hover:border-emerald-500/50 transition-all" onclick="openCertModal('./PE1.png', 'Python Essentials 1', 'Cisco Networking Academy')">
+        <div class="h-44 bg-slate-900 overflow-hidden relative">
+          <img src="./PE1.png" alt="Python Essentials 1 Certificate" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='./dlsl.png'">
+          <div class="absolute inset-0 bg-slate-950/20 group-hover:bg-transparent transition-colors"></div>
+        </div>
+        <div class="p-4 space-y-1">
+          <span class="text-[11px] code-font text-emerald-400 font-semibold">Cisco Networking Academy</span>
+          <h4 class="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors">Python Essentials 1</h4>
+          <span class="text-xs text-slate-400 block">March 24, 2026</span>
+        </div>
+      </div>
+
+      <!-- Cert 4: Cyber Threat Management -->
+      <div class="cert-item glass-card rounded-2xl border border-slate-800 overflow-hidden cursor-pointer group hover:border-emerald-500/50 transition-all" onclick="openCertModal('./Cyberthreat.png', 'Cyber Threat Management', 'Cisco Networking Academy')">
+        <div class="h-44 bg-slate-900 overflow-hidden relative">
+          <img src="./Cyberthreat.png" alt="Cyber Threat Management Certificate" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='./dlsl.png'">
+          <div class="absolute inset-0 bg-slate-950/20 group-hover:bg-transparent transition-colors"></div>
+        </div>
+        <div class="p-4 space-y-1">
+          <span class="text-[11px] code-font text-emerald-400 font-semibold">Cisco Networking Academy</span>
+          <h4 class="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors">Cyber Threat Management</h4>
+          <span class="text-xs text-slate-400 block">March 17, 2026</span>
+        </div>
+      </div>
+
+      <!-- Cert 5: Python Essentials 2 -->
+      <div class="cert-item glass-card rounded-2xl border border-slate-800 overflow-hidden cursor-pointer group hover:border-emerald-500/50 transition-all" onclick="openCertModal('./PE2.png', 'Python Essentials 2', 'Cisco Networking Academy')">
+        <div class="h-44 bg-slate-900 overflow-hidden relative">
+          <img src="./PE2.png" alt="Python Essentials 2 Certificate" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='./dlsl.png'">
+          <div class="absolute inset-0 bg-slate-950/20 group-hover:bg-transparent transition-colors"></div>
+        </div>
+        <div class="p-4 space-y-1">
+          <span class="text-[11px] code-font text-emerald-400 font-semibold">Cisco Networking Academy</span>
+          <h4 class="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors">Python Essentials 2</h4>
+          <span class="text-xs text-slate-400 block">April 14, 2026</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Ultra-Minimalist Footer ──────────────────────── -->
+  <footer id="contact" class="py-10 border-t border-slate-800/80 text-xs code-font text-slate-500 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+      <div>
+        &copy; 2026 John Andrei Garcia Agustin &bull; De La Salle Lipa (4th Year BSIT &bull; 486 Hours OJT)
+      </div>
+      <div class="flex items-center gap-5 text-slate-400">
+        <a href="https://github.com/Drei-Nitsu" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5">
+          <img src="./github-icon.png" alt="GitHub" class="w-3.5 h-3.5 rounded-full object-contain">
+          <span>GitHub</span>
+        </a>
+        <span>&bull;</span>
+        <a href="https://linkedin.com/in/john-andrei-agustin-143b79386" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 transition-colors flex items-center gap-1.5">
+          <img src="./linkedin-icon.png" alt="LinkedIn" class="w-3.5 h-3.5 rounded-sm object-contain">
+          <span>LinkedIn</span>
+        </a>
+        <span>&bull;</span>
+        <a href="./John-Andrei-Agustin-CV.pdf" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
+          CV (PDF)
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Floating AI Chat Trigger ─────────────────────── -->
+  <div class="fixed bottom-6 right-6 z-40">
+    <button id="aiChatToggleBtn" onclick="toggleAIChat()" class="flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-slate-900/95 hover:bg-slate-800 border border-emerald-500/50 hover:border-emerald-400 text-emerald-400 text-xs font-bold code-font shadow-2xl transition-all transform hover:scale-105 group">
+      <span class="relative flex h-2 w-2">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+      </span>
+      <i data-lucide="bot" class="w-4 h-4 icon-bounce"></i>
+      <span id="aiChatToggleText">Ask Andrei AI</span>
+    </button>
+  </div>
+
+  <!-- ── Interactive AI Assistant Window ──────────────── -->
+  <div id="aiChatWindow" class="fixed bottom-20 right-4 sm:right-6 z-50 hidden w-[92vw] sm:w-[410px] h-[530px] max-h-[85vh] glass-card rounded-2xl border border-slate-700/80 shadow-2xl bg-[#090d16]/95 backdrop-blur-2xl flex flex-col overflow-hidden transition-all duration-300 transform scale-95 opacity-0">
+    
+    <!-- Chat Header -->
+    <div class="bg-slate-900/90 border-b border-slate-800 px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="relative w-9 h-9 rounded-full overflow-hidden border border-emerald-500/50">
+          <img src="./profile.png" alt="Andrei AI" class="w-full h-full object-cover" />
+          <span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-400 border border-slate-900"></span>
+        </div>
+        <div>
+          <h4 class="text-xs font-bold text-white flex items-center gap-1.5">
+            <span>Andrei's AI Agent</span>
+            <span class="px-1.5 py-0.2 rounded text-[9px] bg-emerald-500/20 text-emerald-300 code-font">QA BOT</span>
+          </h4>
+          <span class="text-[10px] text-slate-400 code-font">Active · Ask me anything</span>
+        </div>
+      </div>
+      <button onclick="toggleAIChat()" class="p-1.5 rounded-lg text-slate-400 hover:text-white bg-slate-800/80 hover:bg-slate-800 transition-colors" title="Close AI Assistant">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+    </div>
+
+    <!-- Chat Messages Scroll Area -->
+    <div id="aiChatMessages" class="flex-1 p-4 overflow-y-auto space-y-3.5 text-xs">
+      
+      <!-- Initial AI Greeting -->
+      <div class="flex items-start gap-2.5">
+        <div class="w-6 h-6 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 shrink-0 mt-0.5">
+          <i data-lucide="bot" class="w-3.5 h-3.5"></i>
+        </div>
+        <div class="space-y-2 max-w-[85%]">
+          <div class="p-3 rounded-2xl rounded-tl-sm bg-slate-800/80 border border-slate-700/70 text-slate-200 leading-relaxed shadow-sm">
+            Kumusta! 👋 I am <strong>Andrei's Virtual QA Agent</strong>. I can answer your questions regarding Andrei's background, projects, test documentation, and his <strong>486-hour QA Internship / OJT requirement</strong>!
+          </div>
+
+          <!-- Quick Suggestion Chips -->
+          <div class="flex flex-wrap gap-1.5 pt-1">
+            <button onclick="sendQuickPrompt('Tell me about your 486 hours internship requirement')" class="px-2.5 py-1 rounded-full bg-slate-800/90 hover:bg-emerald-500/20 text-emerald-300 hover:text-emerald-200 border border-emerald-500/40 text-[11px] transition-all font-semibold">
+              ⏱️ 486h Requirement
+            </button>
+            <button onclick="sendQuickPrompt('Are you open for QA Internship or OJT opportunities?')" class="px-2.5 py-1 rounded-full bg-slate-800/90 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-300 border border-slate-700 hover:border-emerald-500/40 text-[11px] transition-all">
+              🎓 Seeking QA Internship?
+            </button>
+            <button onclick="sendQuickPrompt('What are your top QA & testing skills?')" class="px-2.5 py-1 rounded-full bg-slate-800/90 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-300 border border-slate-700 hover:border-emerald-500/40 text-[11px] transition-all">
+              🛠️ Top QA Skills
+            </button>
+            <button onclick="sendQuickPrompt('Tell me about the Fedelicious Wings POS project')" class="px-2.5 py-1 rounded-full bg-slate-800/90 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-300 border border-slate-700 hover:border-emerald-500/40 text-[11px] transition-all">
+              🍗 Fedelicious POS
+            </button>
+            <button onclick="sendQuickPrompt('Tell me about the Barangay Safety App')" class="px-2.5 py-1 rounded-full bg-slate-800/90 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-300 border border-slate-700 hover:border-emerald-500/40 text-[11px] transition-all">
+              📱 Barangay App
+            </button>
+            <button onclick="sendQuickPrompt('What test automation tools are you learning?')" class="px-2.5 py-1 rounded-full bg-slate-800/90 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-300 border border-slate-700 hover:border-emerald-500/40 text-[11px] transition-all">
+              🤖 Automation Roadmap
+            </button>
+            <button onclick="sendQuickPrompt('How can I contact Andrei directly?')" class="px-2.5 py-1 rounded-full bg-slate-800/90 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-300 border border-slate-700 hover:border-emerald-500/40 text-[11px] transition-all">
+              📬 Contact Info
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Chat Input Area -->
+    <form id="aiChatForm" onsubmit="handleAIChatSubmit(event)" class="p-3 bg-slate-900/90 border-t border-slate-800 flex items-center gap-2">
+      <input id="aiChatInput" type="text" placeholder="Ask a question about Andrei..." class="flex-1 px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-400" autocomplete="off" />
+      <button type="submit" class="p-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-all font-bold shrink-0 shadow-md">
+        <i data-lucide="send" class="w-4 h-4"></i>
+      </button>
+    </form>
+
+  </div>
+
+  <!-- ── Footer ──────────────────────────────────────── -->
+  <footer class="border-t border-slate-800 py-8 bg-[#050811] text-center text-xs text-slate-500 space-y-2">
+    <div class="flex items-center justify-center gap-2 text-slate-300 font-bold text-sm">
+      <span>JAGA<span class="text-emerald-400">.qa</span></span>
+      <span>—</span>
+      <span>John Andrei Garcia Agustin</span>
+    </div>
+    <p>4th Year BSIT Student · De La Salle Lipa (DLSL) · Aspiring QA Engineer</p>
+    <p class="code-font text-[11px] text-slate-600">Built with honest foundations, manual testing excellence, and ongoing automation studies.</p>
+  </footer>
+
+  <!-- ── Certificate Modal ────────────────────────────── -->
+  <div id="certModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm p-4 flex items-center justify-center" onclick="closeCertModal()">
+    <div class="glass-card max-w-3xl w-full rounded-2xl border border-slate-700 p-4 space-y-3 relative" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between">
+        <div>
+          <h4 id="certModalTitle" class="text-base font-bold text-white"></h4>
+          <span id="certModalIssuer" class="text-xs text-emerald-400 code-font"></span>
+        </div>
+        <button onclick="closeCertModal()" class="p-1 rounded-lg text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div class="rounded-xl overflow-hidden bg-slate-900 border border-slate-800 flex items-center justify-center max-h-[75vh]">
+        <img id="certModalImg" src="" alt="Certificate" class="max-h-[70vh] w-auto object-contain" />
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Client Scripts ──────────────────────────────── -->
+  <script>
+    // Initialize Lucide Icons
+    window.addEventListener('DOMContentLoaded', () => {
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
+    });
+
+    // Mobile Navigation Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+
+
+    // ── PROJECT FILTERING ─────────────────────────────
+    function filterProjects(category, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.className = "filter-btn px-4 py-1.5 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold code-font transition-all";
+      });
+      btn.className = "filter-btn px-4 py-1.5 rounded-full bg-emerald-500 text-slate-950 text-xs font-bold code-font transition-all";
+
+      const items = document.querySelectorAll('.project-item');
+      items.forEach(item => {
+        if (category === 'all' || item.classList.contains(category)) {
+          item.style.display = 'flex';
+          item.classList.add('animate-fade-in');
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // ── COPY EMAIL & TOAST ────────────────────────────
+    function showToastNotification(msg) {
+      let toast = document.getElementById('portfolioToast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'portfolioToast';
+        toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] px-4 py-2.5 rounded-xl bg-slate-900/95 border border-emerald-500/50 text-white font-mono text-xs shadow-2xl flex items-center gap-2 backdrop-blur-md transition-all duration-300 opacity-0 pointer-events-none translate-y-3';
+        document.body.appendChild(toast);
+      }
+      toast.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span><span>${msg}</span>`;
+      toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-3');
+      toast.classList.add('opacity-100', 'translate-y-0');
+      clearTimeout(toast._timeout);
+      toast._timeout = setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-3');
+      }, 2500);
+    }
+
+    function copyEmailToClipboard(btn) {
+      const email = "johnandreiagustin12@gmail.com";
+      const notifySuccess = () => {
+        if (btn && btn instanceof HTMLElement) {
+          const original = btn.innerHTML;
+          btn.innerHTML = "✓ Copied!";
+          setTimeout(() => { btn.innerHTML = original; }, 2200);
+        }
+        const copyEmailText = document.getElementById('copyEmailText');
+        if (copyEmailText) {
+          const origText = copyEmailText.textContent;
+          copyEmailText.textContent = "Copied to Clipboard! ✓";
+          setTimeout(() => { copyEmailText.textContent = origText; }, 2200);
+        }
+        showToastNotification("Email copied: " + email);
+      };
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(notifySuccess).catch(() => {
+          fallbackCopyText(email, notifySuccess);
+        });
+      } else {
+        fallbackCopyText(email, notifySuccess);
+      }
+    }
+
+    function fallbackCopyText(text, cb) {
+      try {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        if (cb) cb();
+      } catch (e) {
+        prompt("Copy Andrei's Email:", text);
+      }
+    }
+
+    // ── CERTIFICATE MODAL LOGIC ───────────────────────
+    function openCertModal(src, title, issuer) {
+      document.getElementById('certModalImg').src = src;
+      document.getElementById('certModalTitle').textContent = title;
+      document.getElementById('certModalIssuer').textContent = issuer;
+      document.getElementById('certModal').classList.remove('hidden');
+    }
+
+    function closeCertModal() {
+      document.getElementById('certModal').classList.add('hidden');
+    }
+
+    // ── INTERACTIVE AI ASSISTANT LOGIC ─────────────────
+    let aiChatOpen = false;
+
+    function toggleAIChat() {
+      const windowEl = document.getElementById('aiChatWindow');
+      const toggleBtn = document.getElementById('aiChatToggleBtn');
+      const toggleText = document.getElementById('aiChatToggleText');
+
+      aiChatOpen = !aiChatOpen;
+
+      if (aiChatOpen) {
+        windowEl.classList.remove('hidden');
+        setTimeout(() => {
+          windowEl.classList.remove('scale-95', 'opacity-0');
+          windowEl.classList.add('scale-100', 'opacity-100');
+        }, 10);
+        toggleText.textContent = "Close AI";
+        toggleBtn.classList.add('bg-slate-800', 'border-emerald-400');
+        document.getElementById('aiChatInput').focus();
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+      } else {
+        windowEl.classList.remove('scale-100', 'opacity-100');
+        windowEl.classList.add('scale-95', 'opacity-0');
+        setTimeout(() => {
+          windowEl.classList.add('hidden');
+        }, 200);
+        toggleText.textContent = "Ask Andrei AI";
+        toggleBtn.classList.remove('bg-slate-800', 'border-emerald-400');
+      }
+    }
+
+    function sendQuickPrompt(promptText) {
+      const input = document.getElementById('aiChatInput');
+      input.value = promptText;
+      handleAIChatSubmit(new Event('submit'));
+    }
+
+    function handleAIChatSubmit(e) {
+      if (e) e.preventDefault();
+      const input = document.getElementById('aiChatInput');
+      const query = input.value.trim();
+      if (!query) return;
+
+      input.value = '';
+      appendUserMessage(query);
+
+      // Show typing indicator
+      const typingId = showTypingIndicator();
+
+      // Simulate natural response delay (300-500ms)
+      setTimeout(() => {
+        removeTypingIndicator(typingId);
+        const reply = generateAIResponse(query);
+        appendAIMessage(reply);
+      }, 420);
+    }
+
+    function appendUserMessage(text) {
+      const container = document.getElementById('aiChatMessages');
+      const msgDiv = document.createElement('div');
+      msgDiv.className = 'flex justify-end';
+      msgDiv.innerHTML = `
+        <div class="p-3 rounded-2xl rounded-tr-sm bg-emerald-500 text-slate-950 font-medium max-w-[85%] leading-relaxed shadow-md">
+          ${escapeHTML(text)}
+        </div>
+      `;
+      container.appendChild(msgDiv);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function showTypingIndicator() {
+      const container = document.getElementById('aiChatMessages');
+      const id = 'typing-' + Date.now();
+      const typingDiv = document.createElement('div');
+      typingDiv.id = id;
+      typingDiv.className = 'flex items-start gap-2.5';
+      typingDiv.innerHTML = `
+        <div class="w-6 h-6 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 shrink-0 mt-0.5">
+          <i data-lucide="bot" class="w-3.5 h-3.5"></i>
+        </div>
+        <div class="px-3.5 py-2.5 rounded-2xl rounded-tl-sm bg-slate-800/80 border border-slate-700/60 text-slate-400 flex items-center gap-1.5 code-font text-[11px]">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-bounce"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-bounce" style="animation-delay: 0.15s;"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-bounce" style="animation-delay: 0.3s;"></span>
+        </div>
+      `;
+      container.appendChild(typingDiv);
+      container.scrollTop = container.scrollHeight;
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+      return id;
+    }
+
+    function removeTypingIndicator(id) {
+      const el = document.getElementById(id);
+      if (el) el.remove();
+    }
+
+    function appendAIMessage(htmlContent) {
+      const container = document.getElementById('aiChatMessages');
+      const msgDiv = document.createElement('div');
+      msgDiv.className = 'flex items-start gap-2.5 animate-fade-in';
+      msgDiv.innerHTML = `
+        <div class="w-6 h-6 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 shrink-0 mt-0.5">
+          <i data-lucide="bot" class="w-3.5 h-3.5"></i>
+        </div>
+        <div class="p-3 rounded-2xl rounded-tl-sm bg-slate-800/80 border border-slate-700/70 text-slate-200 max-w-[85%] leading-relaxed shadow-sm space-y-1.5">
+          ${htmlContent}
+        </div>
+      `;
+      container.appendChild(msgDiv);
+      container.scrollTop = container.scrollHeight;
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    }
+
+    function escapeHTML(str) {
+      return str.replace(/[&<>'"]/g, 
+        tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+      );
+    }
+
+    // ── SMART KNOWLEDGE MATCHER (CLIENT-SIDE AGENT) ────
+    function generateAIResponse(userInput) {
+      const q = userInput.toLowerCase();
+
+      // Availability / Hiring / Intern / OJT
+      if (q.includes('hire') || q.includes('role') || q.includes('intern') || q.includes('ojt') || q.includes('practicum') || q.includes('open') || q.includes('job') || q.includes('opportunity') || q.includes('available')) {
+        return `
+          <p><strong>Yes, definitely!</strong> Andrei is currently a <strong>4th-Year BSIT student (Specialization in Systems Development) at De La Salle Lipa (Class of 2026)</strong> and is specifically seeking a <strong>Quality Assurance (QA) Internship / OJT opportunity</strong>.</p>
+          <p class="text-slate-300">He is ready to render his required <strong>486 practicum hours</strong> (Remote, Hybrid, or Onsite in Batangas / Lipa City or Metro Manila) and contribute real manual testing, test case design, and defect reporting.</p>
+          <div class="pt-1.5 flex flex-wrap gap-1.5">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=johnandreiagustin12@gmail.com&su=QA%20Internship%20Inquiry%20-%20John%20Andrei%20Agustin" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg bg-emerald-500 text-slate-950 font-bold text-[10px] code-font hover:bg-emerald-400 transition-colors inline-flex items-center gap-1 shadow-sm">
+              <i data-lucide="mail" class="w-3 h-3"></i> Open in Gmail
+            </a>
+            <button onclick="copyEmailToClipboard(this)" class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 font-bold text-[10px] code-font hover:bg-slate-700 border border-slate-700 transition-colors">
+              📋 Copy Email
+            </button>
+          </div>
+        `;
+      }
+
+      // 486 Hours Requirement / Practicum / OJT Details
+      if (q.includes('486') || q.includes('hour') || q.includes('duration') || q.includes('ojt requirement') || q.includes('ojt hour') || q.includes('internship requirement')) {
+        return `
+          <p>⏱️ <strong>Internship Requirement: 486 Hours</strong></p>
+          <p class="text-slate-300">As a graduating 4th-Year BS Information Technology student (Specialization in Systems Development) at <strong>De La Salle Lipa</strong>, Andrei is required to render <strong>486 hours</strong> of On-the-Job Training (OJT) / Practicum.</p>
+          <ul class="list-disc list-inside text-slate-300 space-y-0.5 pt-1">
+            <li><strong>Weekly Pace:</strong> Open to full-time (approx. 40 hrs/wk) or company-prescribed schedule.</li>
+            <li><strong>Work Setup:</strong> Remote, Hybrid, or Onsite (Batangas / Lipa City / NCR).</li>
+            <li><strong>School Clearance:</strong> MOA, endorsement letters, and evaluation paperwork ready for DLSL coordination.</li>
+          </ul>
+          <div class="pt-1.5 flex flex-wrap gap-1.5">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=johnandreiagustin12@gmail.com&su=QA%20Internship%20Inquiry%20(486%20Hours)%20-%20John%20Andrei%20Agustin" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg bg-emerald-500 text-slate-950 font-bold text-[10px] code-font hover:bg-emerald-400 transition-colors inline-flex items-center gap-1 shadow-sm">
+              <i data-lucide="mail" class="w-3 h-3"></i> Open in Gmail
+            </a>
+            <button onclick="copyEmailToClipboard(this)" class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 font-bold text-[10px] code-font hover:bg-slate-700 border border-slate-700 transition-colors">
+              📋 Copy Email
+            </button>
+          </div>
+        `;
+      }
+
+      // Skills / What can he do
+      if (q.includes('skill') || q.includes('stack') || q.includes('tools') || q.includes('tech') || q.includes('what can') || q.includes('strengths')) {
+        return `
+          <p>Here is Andrei's official CV skillset &amp; tech stack breakdown:</p>
+          <ul class="list-disc list-inside space-y-1 text-slate-300">
+            <li><strong>QA &amp; Software Testing:</strong> Manual Testing, Test Case Design, Test Planning, Bug Reporting &amp; Tracking, Functional &amp; Regression Testing, API Testing, Edge Case Validation, SDLC &amp; STLC.</li>
+            <li><strong>Testing &amp; Diagnostic Tools:</strong> Postman, Chrome DevTools, Git, GitHub.</li>
+            <li><strong>AI Productivity Tools:</strong> ChatGPT, Microsoft Copilot, Claude, Gemini (test scenario building &amp; query optimization).</li>
+            <li><strong>Languages:</strong> Python (Cisco PCAP certified), JavaScript, C++, SQL, HTML5, CSS3.</li>
+            <li><strong>Frontend &amp; Mobile:</strong> React, Next.js, Tailwind CSS, Bootstrap, Flutter, React Native.</li>
+            <li><strong>Backend &amp; Database:</strong> Node.js, Express.js, Supabase, PostgreSQL, MySQL (SQL querying &amp; data integrity verification).</li>
+            <li><strong>Security:</strong> Row-Level Security (RLS), Signed URLs, Cyber Threat Management (Cisco).</li>
+          </ul>
+        `;
+      }
+
+      // Fedelicious POS Project
+      if (q.includes('fedelicious') || q.includes('wings') || q.includes('pos') || q.includes('restaurant')) {
+        return `
+          <p><strong>Fedelicious Wings POS</strong> is a locally hosted web prototype (Node.js, Express, MySQL) built to eliminate ordering and pricing errors for small dining operations.</p>
+          <p class="text-slate-300"><strong>Andrei's QA focus:</strong></p>
+          <ul class="list-disc list-inside text-slate-300 space-y-0.5">
+            <li>Arithmetic boundary testing to prevent negative discounts.</li>
+            <li>Order workflow verification from draft to receipt invoice.</li>
+            <li>MySQL transaction rollback checks for cancelled items.</li>
+          </ul>
+        `;
+      }
+
+      // Barangay Safety Incident App
+      if (q.includes('barangay') || q.includes('safety') || q.includes('mobile') || q.includes('flutter') || q.includes('lipa')) {
+        return `
+          <p><strong>Barangay Safety Incident Reporting</strong> is a cross-platform mobile system (Flutter, Supabase, PostgreSQL, PostGIS) for Lipa City authorities.</p>
+          <p class="text-slate-300"><strong>Andrei's QA focus:</strong></p>
+          <ul class="list-disc list-inside text-slate-300 space-y-0.5">
+            <li>GPS boundary validation to ensure pins remain within Lipa City limits.</li>
+            <li>Mobile form testing (mandatory inputs & photo file upload boundaries).</li>
+            <li>Role-Based Access Control (RBAC) between citizen reports and admin resolution controls.</li>
+          </ul>
+        `;
+      }
+
+      // Automation / Playwright / Postman
+      if (q.includes('playwright') || q.includes('automation') || q.includes('postman') || q.includes('api') || q.includes('learning')) {
+        return `
+          <p>Andrei is transparent about his technical journey: his immediate bread-and-butter is <strong>thorough manual testing and sharp bug hunting</strong>, while actively upskilling in automation:</p>
+          <ul class="list-disc list-inside text-slate-300 space-y-0.5">
+            <li><strong>Playwright (TypeScript):</strong> Writing locator strategies (<code>getByRole</code>), auto-waiting assertions, and page redirects.</li>
+            <li><strong>Postman:</strong> Creating API collections, validating HTTP 200/201 status codes, and checking JSON contracts.</li>
+          </ul>
+          <p class="text-slate-400 text-[11px] pt-1">He is eager to be mentored by senior SDETs and QA leads!</p>
+        `;
+      }
+
+      // Education / School
+      if (q.includes('school') || q.includes('education') || q.includes('dlsl') || q.includes('college') || q.includes('la salle') || q.includes('graduate') || q.includes('student') || q.includes('major') || q.includes('specialization') || q.includes('track')) {
+        return `
+          <p>🎓 <strong>Education Background:</strong></p>
+          <ul class="space-y-1 text-slate-300">
+            <li>• <strong>De La Salle Lipa (2023 – Present):</strong> Bachelor of Science in Information Technology (BSIT) · <strong>Specialization in Systems Development</strong> · <em>4th Year Student (Graduating Class 2026)</em>.</li>
+            <li>• <strong>OJT Practicum Requirement:</strong> 486 Hours of Quality Assurance & Testing training.</li>
+            <li>• <strong>Core Focus:</strong> Software QA & Testing, Systems Architecture, Database Management, and Web/Mobile Development.</li>
+          </ul>
+        `;
+      }
+
+      // Certifications
+      if (q.includes('cert') || q.includes('cisco') || q.includes('accenture') || q.includes('devroutes') || q.includes('python')) {
+        return `
+          <p>🏆 <strong>Verified Certifications:</strong></p>
+          <ul class="space-y-1 text-slate-300">
+            <li>• <strong>Cisco Networking Academy:</strong> Python Essentials 1 & Python Essentials 2.</li>
+            <li>• <strong>Cisco Networking Academy:</strong> Cyber Threat Management.</li>
+            <li>• <strong>Accenture:</strong> Skills to Succeed Academy.</li>
+            <li>• <strong>JPCS – DLSL Chapter:</strong> DevRoutes (Learning with Roadmaps).</li>
+          </ul>
+        `;
+      }
+
+      // Contact
+      if (q.includes('contact') || q.includes('email') || q.includes('reach') || q.includes('github') || q.includes('message')) {
+        return `
+          <p>You can get in touch with Andrei right away:</p>
+          <ul class="space-y-1 text-slate-300">
+            <li>📧 <strong>Email:</strong> <a href="https://mail.google.com/mail/?view=cm&fs=1&to=johnandreiagustin12@gmail.com&su=QA%20Internship%20Inquiry%20-%20John%20Andrei%20Agustin" target="_blank" rel="noopener noreferrer" class="text-emerald-400 hover:underline">johnandreiagustin12@gmail.com</a></li>
+            <li>🐙 <strong>GitHub:</strong> <a href="https://github.com/Drei-Nitsu" target="_blank" class="text-emerald-400 underline">@Drei-Nitsu</a></li>
+            <li>💼 <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/john-andrei-agustin-143b79386" target="_blank" class="text-emerald-400 underline">john-andrei-agustin-143b79386</a></li>
+            <li>📍 <strong>Location:</strong> Talisay / Lipa City, Batangas, Philippines</li>
+            <li>⏱️ <strong>OJT Requirement:</strong> 486 Hours (De La Salle Lipa BSIT)</li>
+          </ul>
+          <div class="pt-1.5 flex flex-wrap gap-1.5">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=johnandreiagustin12@gmail.com&su=QA%20Internship%20Inquiry%20-%20John%20Andrei%20Agustin" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg bg-emerald-500 text-slate-950 font-bold text-[10px] code-font hover:bg-emerald-400 transition-colors inline-flex items-center gap-1 shadow-sm">
+              <i data-lucide="mail" class="w-3 h-3"></i> Open in Gmail
+            </a>
+            <button onclick="copyEmailToClipboard(this)" class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 font-bold text-[10px] code-font hover:bg-slate-700 border border-slate-700 transition-colors">
+              📋 Copy Email
+            </button>
+          </div>
+        `;
+      }
+
+      // Greetings & Small Talk
+      if (q === 'hi' || q === 'hello' || q === 'hey' || q.includes('kumusta') || q.includes('good morning') || q.includes('good afternoon') || q.includes('good evening') || q === 'sup') {
+        return `
+          <p>Kumusta! 👋 Great to meet you! I am Andrei's AI QA Assistant. How can I help you today? You can ask me about his <strong>manual QA skills</strong>, <strong>tested projects</strong>, <strong>certifications</strong>, or <strong>job availability</strong>!</p>
+        `;
+      }
+
+      // Gratitude / Polite acknowledgments
+      if (q.includes('thank') || q.includes('salamat') || q === 'ok' || q === 'cool' || q === 'great' || q === 'nice') {
+        return `
+          <p>You're very welcome! 😊 Feel free to ask more, or reach out to Andrei directly if you'd like to schedule an interview or discussion. Have a great day!</p>
+        `;
+      }
+
+      // Salary / Compensation / Rates / Allowance / Stipend
+      if (q.includes('salary') || q.includes('rate') || q.includes('compensation') || q.includes('pay') || q.includes('allowance') || q.includes('budget') || q.includes('stipend')) {
+        return `
+          <p>💼 <strong>Internship Allowance & Terms:</strong></p>
+          <p class="text-slate-300">As a 4th-Year BSIT student seeking a QA Internship / OJT, Andrei's primary priority is <strong>hands-on industry experience, mentorship, and fulfilling practicum hours</strong>. Any stipend or allowance is aligned with your company's standard intern program.</p>
+          <p class="text-slate-400 text-[11px] pt-1">Feel free to discuss details directly with Andrei via email!</p>
+        `;
+      }
+
+      // Start Date & Scheduling
+      if (q.includes('start') || q.includes('when can') || q.includes('schedule') || q.includes('immediate') || q.includes('deployment') || q.includes('timeline')) {
+        return `
+          <p>📅 <strong>Availability & Start Timeline:</strong></p>
+          <p class="text-slate-300">Andrei is graduating in 2026 from De La Salle Lipa. Depending on your onboarding schedule and internship timeline, he is <strong>ready to align and start promptly</strong> upon agreement.</p>
+        `;
+      }
+
+      // Location / Relocation / Remote vs Onsite
+      if (q.includes('location') || q.includes('where') || q.includes('remote') || q.includes('onsite') || q.includes('hybrid') || q.includes('manila') || q.includes('batangas') || q.includes('lipa')) {
+        return `
+          <p>📍 <strong>Location & Work Setup:</strong></p>
+          <p class="text-slate-300">Andrei is based in <strong>Batangas / Lipa City</strong>. He has a dedicated workstation for <strong>100% Remote</strong> setups, and is also open to <strong>Hybrid or Onsite</strong> arrangements within Batangas and Metro Manila / NCR.</p>
+        `;
+      }
+
+      // Hobbies / Personal interests
+      if (q.includes('hobby') || q.includes('hobbies') || q.includes('interest') || q.includes('outside') || q.includes('free time')) {
+        return `
+          <p>🎮 <strong>Outside of QA Testing:</strong></p>
+          <p class="text-slate-300">When not designing test cases or running Playwright scripts, Andrei enjoys exploring modern web and mobile tech, identifying usability flaws in everyday apps, studying tech roadmaps, and continuous self-improvement!</p>
+        `;
+      }
+
+      // ── THE ULTIMATE SMART FALLBACK (WHEN NO ANSWER IS KNOWN) ──
+      const encodedSubject = encodeURIComponent("Question from Portfolio Visitor: " + userInput.slice(0, 40));
+      const encodedBody = encodeURIComponent("Hi Andrei,\n\nI was exploring your portfolio and had a specific question:\n\n\"" + userInput + "\"\n\nLooking forward to hearing from you!");
+
+      return `
+        <div class="space-y-2">
+          <p>🤔 <em>"I don't have that specific detail in my portfolio knowledge base yet, but Andrei would be happy to answer you personally!"</em></p>
+          
+          <p class="text-slate-300">As Andrei's portfolio bot, I specialize in his verified QA skillset, college projects, and education. For specific queries or interview discussions, you can reach him directly:</p>
+
+          <!-- Action Buttons -->
+          <div class="pt-1 flex flex-wrap items-center gap-1.5">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=johnandreiagustin12@gmail.com&su=${encodedSubject}&body=${encodedBody}" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-[10px] code-font transition-all inline-flex items-center gap-1 shadow-sm">
+              <i data-lucide="mail" class="w-3 h-3"></i>
+              <span>Open in Gmail</span>
+            </a>
+            <button onclick="copyEmailToClipboard(this)" class="px-2 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-[10px] code-font border border-slate-700 transition-colors">
+              Copy Email
+            </button>
+          </div>
+
+          <!-- Suggested Alternatives to Keep Conversation Going -->
+          <div class="pt-2 border-t border-slate-700/60">
+            <span class="text-[10px] text-slate-400 block mb-1">In the meantime, feel free to ask about:</span>
+            <div class="flex flex-wrap gap-1">
+              <button onclick="sendQuickPrompt('What are your top QA & testing skills?')" class="px-2 py-0.5 rounded bg-slate-800/90 text-slate-300 hover:text-emerald-300 hover:bg-emerald-500/10 border border-slate-700 text-[10px] transition-all">
+                🛠️ Top QA Skills
+              </button>
+              <button onclick="sendQuickPrompt('Are you open for QA Internship or OJT opportunities?')" class="px-2 py-0.5 rounded bg-slate-800/90 text-slate-300 hover:text-emerald-300 hover:bg-emerald-500/10 border border-slate-700 text-[10px] transition-all">
+                🎓 Seeking QA Internship?
+              </button>
+              <button onclick="sendQuickPrompt('Tell me about the Fedelicious Wings POS project')" class="px-2 py-0.5 rounded bg-slate-800/90 text-slate-300 hover:text-emerald-300 hover:bg-emerald-500/10 border border-slate-700 text-[10px] transition-all">
+                🍗 Fedelicious POS
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+  </script>
+</body>
+</html>
