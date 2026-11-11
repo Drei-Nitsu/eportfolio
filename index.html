@@ -1325,8 +1325,23 @@
         `;
       }
 
-      // ── 6. Automation Tools Learning / Playwright / Postman ──
-      if (q.includes('automation') || q.includes('playwright') || q.includes('postman') || q.includes('tools are you learning') || q.includes('learning tools') || q.includes('tools you learn') || q.includes('upskilling') || q.includes('currently learning')) {
+      // ── 6A. Manual vs Automation Tester Profile ──
+      if (q.includes('manual or automation') || q.includes('manual or auto') || q.includes('manual tester or automation') || q.includes('manual or automated') || q.includes('manual or sdet') || q.includes('are you a manual') || q.includes('are you an automation')) {
+        return `
+          <p>🎯 <strong>Manual vs. Automation Tester Profile:</strong></p>
+          <div class="space-y-1.5 text-slate-300">
+            <p>Andrei's primary and immediate strength for this OJT is <strong>solid Manual Testing</strong> (Test Case Design, Exploratory Testing, Boundary Value Analysis, Bug Reporting), while actively expanding into test automation:</p>
+            <ul class="list-disc list-inside space-y-0.5">
+              <li><strong>Manual QA Strengths:</strong> Mabusisi sa detalye, validates boundary conditions, executes regression passes, and isolates root causes before reporting.</li>
+              <li><strong>Automation Expansion:</strong> Writing <strong>Playwright</strong> E2E scripts (locators, assertions) and <strong>Postman</strong> API test collections.</li>
+            </ul>
+            <p class="text-slate-400 text-[11px] pt-1">He believes mastering manual testing principles first is key to writing effective, resilient automated tests!</p>
+          </div>
+        `;
+      }
+
+      // ── 6B. Automation Tools He is Learning ──
+      if ((q.includes('automation') && (q.includes('tool') || q.includes('learn') || q.includes('stack') || q.includes('studying'))) || q.includes('playwright') || q.includes('postman') || q.includes('tools are you learning') || q.includes('learning tools') || q.includes('tools you learn') || q.includes('upskilling') || q.includes('currently learning')) {
         return `
           <p>🤖 <strong>Automation Tools Andrei is Actively Learning:</strong></p>
           <div class="space-y-1.5 text-slate-300">
@@ -1338,6 +1353,19 @@
             </ul>
             <p class="text-slate-400 text-[11px] pt-1">He is excited to be guided and mentored by senior QA automation engineers!</p>
           </div>
+        `;
+      }
+
+      // ── 6C. Chrome DevTools & Diagnostic Inspection ──
+      if (q.includes('chrome devtools') || q.includes('devtools') || q.includes('dev tools') || q.includes('inspect element') || q.includes('inspect') || q.includes('developer tools')) {
+        return `
+          <p>🛠️ <strong>How Andrei Uses Chrome DevTools in QA Testing:</strong></p>
+          <ul class="list-disc list-inside text-slate-300 space-y-1">
+            <li>🌐 <strong>Network Tab:</strong> Inspects API payloads, request headers, query parameters, and HTTP response codes (200, 400, 404, 500) to verify backend communication during UI actions.</li>
+            <li>🛑 <strong>Console Tab:</strong> Checks for JavaScript exceptions, uncaught runtime errors, and failed asset loads when testing user interactions.</li>
+            <li>🔍 <strong>Elements &amp; DOM:</strong> Inspects HTML hierarchy, CSS styling bugs, and extracts resilient test selectors (<code>data-testid</code>, ARIA roles, unique IDs) for test planning.</li>
+            <li>📱 <strong>Device Emulation:</strong> Tests responsive layouts across various mobile/tablet viewports and screen orientations.</li>
+          </ul>
         `;
       }
 
@@ -1353,8 +1381,21 @@
         `;
       }
 
-      // ── 8. Bug Prioritization / Triage Under Pressure ──
-      if (q.includes('prioritize') || q.includes('priority') || q.includes('triage') || q.includes('severity') || q.includes('under pressure') || q.includes('tight deadline') || q.includes('multiple bug')) {
+      // ── 8A. Tight Deadlines / Working Under Pressure ──
+      if (q.includes('tight deadline') || q.includes('deadline') || q.includes('tight timeline') || q.includes('pressure') || q.includes('under pressure') || q.includes('fast-paced') || q.includes('cramming') || q.includes('short notice')) {
+        return `
+          <p>⚡ <strong>How Andrei Handles Tight Deadlines &amp; Pressure:</strong></p>
+          <ul class="list-disc list-inside text-slate-300 space-y-1">
+            <li>🎯 <strong>Risk-Based Testing:</strong> Focuses testing immediately on high-risk, core user flows (P0/P1 blockers like checkout, authentication, and data integrity) before verifying secondary nice-to-have features.</li>
+            <li>📢 <strong>Proactive Communication:</strong> Promptly flags blockers and test progress to the QA Lead and developers so scope can be adjusted without surprise delays.</li>
+            <li>📝 <strong>Targeted Regression:</strong> Uses focused smoke/sanity checks instead of blindly running entire suites when release timelines are short.</li>
+            <li>🧘 <strong>Composed &amp; Methodical:</strong> Stays calm and avoids skipping critical test steps, ensuring software quality is never compromised in haste.</li>
+          </ul>
+        `;
+      }
+
+      // ── 8B. Bug Prioritization / Triage ──
+      if (q.includes('prioritize') || q.includes('priority') || q.includes('triage') || q.includes('severity') || q.includes('multiple bug') || q.includes('which bug')) {
         return `
           <p>⏱️ <strong>How Andrei Prioritizes Bugs (Triage by Severity &amp; Impact):</strong></p>
           <ul class="list-disc list-inside text-slate-300 space-y-1">
@@ -1451,40 +1492,43 @@
         `;
       }
 
-      // ── 16. Location & Work Setup / Taguig / Makati ──
-      if (q.includes('location') || q.includes('where are') || q.includes('where is') || q.includes('remote') || q.includes('onsite') || q.includes('hybrid') || q.includes('taguig') || q.includes('makati') || q.includes('bgc') || q.includes('manila') || q.includes('batangas') || q.includes('lipa') || q.includes('talisay') || q.includes('setup')) {
+      // ── 16. Location & Work Setup / Travel & Commute ──
+      if (q.includes('travel') || q.includes('commute') || q.includes('biyahe') || q.includes('byahe') || q.includes('willing to commute') || q.includes('willing to travel') || q.includes('relocate') || q.includes('location') || q.includes('where are') || q.includes('where is') || q.includes('remote') || q.includes('onsite') || q.includes('hybrid') || q.includes('taguig') || q.includes('makati') || q.includes('bgc') || q.includes('manila') || q.includes('batangas') || q.includes('lipa') || q.includes('talisay') || q.includes('setup')) {
         return `
-          <p>📍 <strong>Location &amp; Work Setup:</strong></p>
+          <p>🚗 <strong>Location, Work Setup &amp; Commute:</strong></p>
           <ul class="space-y-1 text-slate-300">
             <li>🏡 <strong>Home Base:</strong> Talisay, Batangas (studying at De La Salle Lipa).</li>
-            <li>🚗 <strong>Hybrid / Onsite Focus:</strong> Highly open and ready to report onsite or hybrid in <strong>Taguig / Makati (BGC / NCR)</strong> as well as Batangas areas.</li>
-            <li>💻 <strong>Remote Setup:</strong> Dedicated PC workstation with high-speed fiber internet and power backup readiness.</li>
+            <li>🚗 <strong>Willing to Commute / Travel:</strong> Yes, definitely! Open and ready to report for <strong>Onsite or Hybrid</strong> setups in <strong>Taguig / Makati (BGC / NCR)</strong> as well as Batangas areas.</li>
+            <li>💻 <strong>Remote Setup:</strong> 100% remote-ready with a dedicated workstation, high-speed fiber internet, and power backup readiness.</li>
           </ul>
         `;
       }
 
-      // ── 17. Education / School ──
-      if (q.includes('school') || q.includes('education') || q.includes('dlsl') || q.includes('college') || q.includes('la salle') || q.includes('graduate') || q.includes('major') || q.includes('specialization') || q.includes('track')) {
+      // ── 17. Education / School / Graduation ──
+      if (q.includes('graduat') || q.includes('graduate') || q.includes('graduating') || q.includes('kailan gagraduate') || q.includes('when are you graduating') || q.includes('study') || q.includes('studying') || q.includes('school') || q.includes('education') || q.includes('dlsl') || q.includes('college') || q.includes('la salle') || q.includes('major') || q.includes('specialization') || q.includes('track') || q.includes('nagaaral') || q.includes('nag-aaral')) {
         return `
-          <p>🎓 <strong>Education Background:</strong></p>
+          <p>🎓 <strong>Education Background &amp; Graduation:</strong></p>
           <ul class="space-y-1 text-slate-300">
-            <li>• <strong>De La Salle Lipa (2023 – Present):</strong> Bachelor of Science in Information Technology (BSIT) · <strong>Specialization in Systems Development</strong> · <em>4th Year Student (Graduating Class 2027)</em>.</li>
-            <li>• <strong>OJT Practicum Requirement:</strong> 486 Hours of Quality Assurance & Testing training.</li>
-            <li>• <strong>Core Focus:</strong> Software QA & Testing, Systems Architecture, Database Management, and Web/Mobile Development.</li>
+            <li>• <strong>De La Salle Lipa (2023 – Present):</strong> Bachelor of Science in Information Technology (BSIT) · <strong>Specialization in Systems Development</strong>.</li>
+            <li>• <strong>Year Level &amp; Batch:</strong> <em>4th-Year Student</em> · <strong>Graduating Class of 2027</strong>.</li>
+            <li>• <strong>OJT Practicum Requirement:</strong> Currently rendering the required <strong>486 hours</strong> of QA &amp; software testing training.</li>
+            <li>• <strong>Core Academic Edge:</strong> Software QA &amp; Testing, Systems Architecture, Database Management, and Web/Mobile Application Development.</li>
           </ul>
         `;
       }
 
       // ── 18. Certifications ──
-      if (q.includes('cert') || q.includes('cisco') || q.includes('accenture') || q.includes('devroutes')) {
+      if (q.includes('cert') || q.includes('cisco') || q.includes('accenture') || q.includes('devroutes') || q.includes('license') || q.includes('credential')) {
         return `
-          <p>🏆 <strong>Verified Certifications:</strong></p>
+          <p>🏆 <strong>Verified Technical Certifications (5 Total):</strong></p>
           <ul class="space-y-1 text-slate-300">
-            <li>• <strong>Cisco Networking Academy:</strong> Python Essentials 1 & Python Essentials 2.</li>
-            <li>• <strong>Cisco Networking Academy:</strong> Cyber Threat Management.</li>
-            <li>• <strong>Accenture:</strong> Skills to Succeed Academy.</li>
-            <li>• <strong>JPCS – DLSL Chapter:</strong> DevRoutes (Learning with Roadmaps).</li>
+            <li>• <strong>Python Essentials 1:</strong> Cisco Networking Academy (March 24, 2026)</li>
+            <li>• <strong>Python Essentials 2:</strong> Cisco Networking Academy (April 14, 2026)</li>
+            <li>• <strong>Cyber Threat Management:</strong> Cisco Networking Academy (March 17, 2026)</li>
+            <li>• <strong>Skills to Succeed Academy:</strong> Accenture (March 4, 2026)</li>
+            <li>• <strong>DevRoutes (Learning with Roadmaps):</strong> JPCS – De La Salle Chapter (January 29, 2026)</li>
           </ul>
+          <p class="text-slate-400 text-[11px] pt-1">💡 <em>Tip: You can click and preview each full-resolution credential certificate in the Certifications section above!</em></p>
         `;
       }
 
