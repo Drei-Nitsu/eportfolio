@@ -648,25 +648,13 @@ export default function QAEngineerView() {
       {/* Dynamic Real-Time Status & Location Footer */}
       <footer className="border-t border-slate-800/80 bg-slate-950/90 backdrop-blur-md py-8 px-4 sm:px-6 lg:px-8 text-xs font-mono text-slate-400">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-5 text-center md:text-left">
-          {/* Identity & Education */}
+          {/* Left: Identity */}
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold text-sm shrink-0">
+            <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold text-xs shrink-0">
               JA
             </div>
-            <div>
-              <div className="text-white font-bold text-sm tracking-wide flex items-center justify-center md:justify-start gap-2">
-                <span>John Andrei Garcia Agustin</span>
-                <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                  OJT Ready
-                </span>
-              </div>
-              <div className="text-[11px] text-slate-400 flex flex-wrap items-center justify-center md:justify-start gap-1.5 mt-0.5">
-                <span>4th Year BSIT</span>
-                <span className="text-slate-600">•</span>
-                <span>De La Salle Lipa</span>
-                <span className="text-slate-600">•</span>
-                <span className="text-emerald-400 font-medium">486 Hours Requirement</span>
-              </div>
+            <div className="text-white font-semibold text-sm tracking-wide">
+              John Andrei Garcia Agustin
             </div>
           </div>
 
